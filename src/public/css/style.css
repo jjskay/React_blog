@@ -1,0 +1,330 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  color: #00B7FF;
+}
+.cfff {
+  color: #fff;
+}
+.auto {
+  margin: 0 auto;
+}
+.pull-left {
+  float: left;
+}
+.ps-r {
+  position: relative;
+}
+.layoutWidth {
+  width: 1000px;
+}
+.overHide {
+  overflow: hidden;
+}
+.clearfix {
+  clear: both;
+  overflow: hidden;
+}
+.clearfix_1 {
+  display: table;
+}
+.ps-a {
+  position: absolute;
+}
+.ps-f {
+  position: fixed;
+}
+.w100 {
+  width: 100%;
+}
+.text-center {
+  text-align: center;
+}
+.show {
+  display: block;
+}
+.inline {
+  display: inline-block;
+}
+.tabRadius {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.3);
+  margin-left: 10px;
+}
+.textIndent-2em {
+  text-indent: 2em;
+}
+.lh30 {
+  line-height: 30px;
+  height: 30px;
+}
+.pointer {
+  cursor: pointer;
+}
+.hide {
+  display: none;
+}
+.liLayout {
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+}
+.textHide {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+div.body {
+  width: 1000px;
+  margin: 0 auto;
+}
+div.body div.slider {
+  width: 1000px;
+  position: relative;
+  overflow: hidden;
+}
+div.body div.slider div.auto {
+  width: 10000px;
+  position: relative;
+  -webkit-transition: all 0.5s ease 0s;
+}
+div.body div.slider div.auto a {
+  display: block;
+  width: 1000px;
+  overflow: hidden;
+}
+div.body div.slider div.sliderTab {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  bottom: 20px;
+  height: 15px;
+}
+div.body div.slider div.sliderTab span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.3);
+  margin-left: 10px;
+}
+div.body div.slider div.sliderTab span.on {
+  background: rgba(0, 0, 0, 0.9);
+}
+div.body div.slider div.clickTab span {
+  position: absolute;
+  display: block;
+  width: 40px;
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+  top: 50%;
+  margin-top: -15px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  cursor: pointer;
+}
+div.body div.slider div.clickTab span.on {
+  background: rgba(0, 0, 0, 0.8);
+}
+div.body div.slider div.clickTab span.prev {
+  left: 20px;
+}
+div.body div.slider div.clickTab span.next {
+  right: 20px;
+}
+div.body p.nav {
+  margin-bottom: 20px;
+}
+div.body p.nav a {
+  text-align: center;
+  display: inline-block;
+  width: 80px;
+  cursor: pointer;
+  margin-right: 20px;
+  line-height: 30px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  -webkit-transition: all 0.5s ease 0s;
+}
+div.body p.nav a:hover {
+  -webkit-transform: rotateY(360deg);
+}
+div.body div.loginBody {
+  width: 600px;
+  margin: 0 auto;
+}
+div.body div.loginBody p {
+  margin-bottom: 10px;
+  line-height: 30px;
+  height: 30px;
+}
+div.body div.loginBody p label {
+  width: 100%;
+}
+div.body div.loginBody p label span {
+  display: inline-block;
+  width: 100px;
+}
+div.body div.loginBody p label input {
+  padding: 5px 10px;
+  border: 1px solid #bbb;
+}
+div.body div.loginBody div.loginBottom {
+  clear: both;
+  overflow: hidden;
+}
+div.body div.loginBody div.loginBottom input {
+  width: 100px;
+  border: 0;
+  background: rgba(221, 33, 56, 0.6);
+  margin-right: 30px;
+  display: block;
+  line-height: 30px;
+  height: 30px;
+  color: #fff;
+  float: left;
+  cursor: pointer;
+}
+div.body div.loginBody div.regOn {
+  -webkit-transition: all 0.5s ease 0s;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  left: 0;
+  top: 0;
+  text-align: center;
+}
+div.body div.loginBody div.regOn span.show {
+  color: #fff;
+  width: 100%;
+  line-height: 30px;
+  height: 30px;
+  position: relative;
+  top: 50%;
+  margin-top: -15px;
+}
+div.body div.loginBody div.regOff {
+  -webkit-transition: all 0.5s ease 0s;
+  width: 0;
+  height: 0;
+  position: relative;
+  overflow: hidden;
+}
+div.body div.tab-layout {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+div.body div.tab-layout div.tab-title {
+  background: rgba(0, 0, 0, 0.4);
+  text-shadow: 1px -1px 1px rgba(0, 0, 0, 0.4);
+  padding: 2px;
+}
+div.body div.tab-layout div.tab-title li.tabMenuLis {
+  box-sizing: border-box;
+  width: 100px;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-transition: all 0.5s ease 0s;
+  float: left;
+  display: block;
+  line-height: 30px;
+  height: 30px;
+  position: relative;
+}
+div.body div.tab-layout div.tab-title li.tabMenuLis span.show.w100 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: keep-all;
+  text-align: center;
+}
+div.body div.tab-layout div.tab-title li.tabMenuLis ul.tabMenuUls {
+  position: absolute;
+  left: 0;
+  top: 30px;
+  overflow: hidden;
+  display: none;
+}
+div.body div.tab-layout div.tab-title li.tabMenuLis ul.tabMenuUls li {
+  cursor: pointer;
+  width: auto;
+  white-space: nowrap;
+  clear: both;
+  min-width: 160px;
+  padding: 2px;
+}
+div.body div.tab-layout div.tab-title li.tabMenuLis.on ul.tabMenuUls {
+  padding: 5px;
+  display: block;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  text-shadow: 1px -1px 1px #fff;
+  height: auto;
+}
+div.body div.tab-layout div.tab-title li:first-child {
+  border: none;
+}
+div.body div.tab-layout div.tab-title li > span:hover {
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+}
+div.body div.tab-layout div.tab-body div.tabsContext {
+  display: none;
+}
+div.body div.tab-layout div.tab-body div.tabsContext.on {
+  display: block;
+}
+div.body li.hover:hover {
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.6);
+  text-shadow: 1px -1px 1px rgba(0, 0, 0, 0.6);
+}
+div.body div.tab-title.s0 li.li0 > span {
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+}
+div.body div.tab-title.s1 li.li1 > span {
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+}
+div.body div.tab-title.s2 li.li2 > span {
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+}
+div.body div.tab-title.s3 li.li3 > span {
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+}
+textarea {
+  width: 100%;
+  height: 300px;
+}
+body input[type=text] {
+  padding: 5px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+}

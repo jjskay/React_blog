@@ -1,0 +1,318 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+*{margin:0;padding:0}
+ul,ol{list-style:none}
+a {
+  color: #00B7FF;
+}
+
+.cfff{
+  color:#fff;
+}
+.auto{
+	margin:0 auto;
+}
+.pull-left{
+	float:left;
+}
+.ps-r{
+	position:relative;
+}
+.layoutWidth{
+	width:1000px;
+}
+.overHide{
+	overflow:hidden;
+}
+.clearfix{
+	clear:both;
+	overflow:hidden;
+}
+.clearfix_1{
+  display: table;
+}
+.ps-a{
+	position:absolute;
+}
+.ps-f{
+  position:fixed;
+}
+.w100{
+	width:100%;
+}
+.text-center{
+	text-align:center
+}
+.show{
+	display:block;
+}
+.inline{
+	display:inline-block;
+}
+.tabRadius{
+	display:inline-block;
+	width:10px;
+	height:10px;
+	border-radius:5px;
+	background:rgba(0,0,0,0.3);
+	margin-left:10px;
+}
+.textIndent-2em{
+  text-indent:2em;
+}
+.lh30{
+	line-height:30px;
+	height:30px;
+}
+.pointer{
+	cursor:pointer;
+}
+.hide{
+  display:none;
+}
+.liLayout{
+  background:rgba(0,0,0,0.7);
+  color:rgba(255,255,255,0.8);
+  border:none;
+}
+.textHide{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+div.body{
+	.layoutWidth;
+    .auto;
+    div.slider{
+       .layoutWidth;
+       .ps-r;
+       .overHide;
+       div.auto{
+          width:10000px;
+          .ps-r;
+          -webkit-transition: all 0.5s ease 0s;
+          a{
+             .show;
+             .layoutWidth;
+             .overHide;
+          }
+       }
+       div.sliderTab{
+          .ps-a;
+          .w100;
+          left:0;
+          .text-center;
+          bottom:20px;
+          height:15px;
+          span{
+              .tabRadius;
+          }
+          span.on{
+              background:rgba(0,0,0,0.9)
+          }
+       }
+       div.clickTab{
+          span{
+             .ps-a;
+             .show;
+             width:40px;
+             .text-center;
+             .lh30;
+             top:50%;
+             margin-top:-15px;
+             background:rgba(0,0,0,0.4);
+             color:#fff;
+             .pointer;
+          }
+          span.on{
+             background:rgba(0,0,0,0.8);
+          }
+          span.prev{
+             left:20px;
+          }
+          span.next{
+             right:20px;
+          }
+
+       }
+    }
+    p.nav{
+       margin-bottom:20px;
+       a{
+       	  .text-center;
+          .inline;
+          width:80px;
+          .pointer;
+          margin-right:20px;
+          .lh30;
+          background:rgba(0,0,0,0.5);
+          color:#fff;
+          -webkit-transition: all 0.5s ease 0s;
+       }
+       a:hover{
+          -webkit-transform:rotateY(360deg); 
+       }
+    }
+    div.loginBody{
+       width:600px;
+       .auto;
+       p{
+          margin-bottom:10px;
+          .lh30;
+          label{
+             .w100;
+             span{
+                 .inline;
+                 width:100px;
+             }
+             input{
+	             padding:5px 10px;
+	             border:1px solid #bbb;
+	         }
+          }
+       }
+       div.loginBottom{
+          .clearfix;
+          input{
+              width:100px;
+              border:0;
+              background:rgba(221,33,56,.6);
+              margin-right:30px;
+              .show;
+              .lh30;
+              color:#fff;
+              .pull-left;
+              .pointer;
+          }
+       }
+       div.regOn{
+          -webkit-transition: all 0.5s ease 0s;
+          .w100;
+          height:100%;
+          background:rgba(0,0,0,.7);
+          .ps-f;
+          left:0;
+          top:0;
+          .text-center;
+          span.show{
+             .cfff;
+             .w100;
+             .lh30;
+             .ps-r;
+             top:50%;
+             margin-top:-15px;
+          }
+       }
+       div.regOff{
+          -webkit-transition: all 0.5s ease 0s;
+          width:0;
+          height:0;
+          .ps-r;
+          .overHide;
+       }
+    }
+    div.tab-layout{
+        width:500px;
+        .auto;
+        margin-top:30px;
+        div.tab-title{
+           background:rgba(0,0,0,0.4);
+           text-shadow:1px -1px 1px rgba(0,0,0,0.4);
+           padding:2px;
+           li.tabMenuLis{
+               box-sizing:border-box;
+               width:100px;
+               white-space: nowrap;
+               .pointer;
+               -webkit-transition: all 0.5s ease 0s;
+               .pull-left ;
+               .show ;
+               .lh30;
+               .ps-r;
+               span.show.w100{
+                  .textHide;
+                  .text-center;
+               }
+               ul.tabMenuUls{
+                  .ps-a;
+                  left:0;
+                  top:30px;
+                  .overHide;
+                  .hide;
+                  li{
+                     .pointer;
+                     width:auto;
+                     white-space: nowrap;
+                     clear: both;
+                     min-width:160px;
+                     padding:2px;
+                  }
+               }
+           }
+           li.tabMenuLis.on{
+               ul.tabMenuUls{
+                 padding:5px;
+                 .show;
+                 box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+                 border:1px solid rgba(0,0,0,0.15);
+                 background:#fff;
+                 text-shadow:1px -1px 1px #fff;
+                 height:auto;
+               }
+           }
+           li:first-child{
+               border:none;
+           }
+           li>span:hover{
+              .liLayout;
+           }
+        }
+        div.tab-body{
+           div.tabsContext{
+              .hide;
+           }
+           div.tabsContext.on{
+              .show;
+           }
+        }
+    }
+    li.hover:hover{
+          color:rgba(255,255,255,0.6);
+          background:rgba(0,0,0,.6);
+          text-shadow:1px -1px 1px rgba(0,0,0,.6);
+    }
+    div.tab-title.s0{
+        li.li0>span{
+            .liLayout;
+        }
+    }
+    div.tab-title.s1{
+        li.li1>span{
+            .liLayout;
+        }
+    }
+    div.tab-title.s2{
+        li.li2>span{
+            .liLayout;
+        }
+    }
+    div.tab-title.s3{
+        li.li3>span{
+            .liLayout;
+        }
+    }
+}
+
+textarea{
+   width:100%;
+   height:300px;
+}
+
+
+
+
+
