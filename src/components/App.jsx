@@ -4,7 +4,6 @@ var {
   Route, RouteHandler, Link
 } = Router;
 var FluxibleMixin = require('fluxible/addons/FluxibleMixin');
-var PageHear = require('./UI/PageHead')
 
 var App = React.createClass({
 
@@ -14,6 +13,16 @@ var App = React.createClass({
     router: React.PropTypes.func.isRequired,
     executeAction: React.PropTypes.func.isRequired
   },
+  // getChildContext: function () {
+  //       return {
+  //           muiTheme: ThemeManager.getMuiTheme(HeadStyle)
+  //       };
+  // },
+
+  // childContextTypes: {
+  //       muiTheme: React.PropTypes.object
+
+  // },
 
   onChange: function() {
     return;
@@ -22,8 +31,8 @@ var App = React.createClass({
   render: function() {
     return (
       <div className="body">
-               <RouteHandler />
-           </div>
+          <RouteHandler />
+      </div>
     )
   }
 })

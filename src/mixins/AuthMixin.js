@@ -3,7 +3,7 @@
  */
 var AuthStore = require('../stores/AuthStore');
 
-module.exports = {
+var AuthMixin = {
     statics: {
         willTransitionTo: function (transition) {
             var isLoginCookie = transition.context
@@ -14,3 +14,5 @@ module.exports = {
         }
     }
 };
+
+module.exports = AuthMixin;
