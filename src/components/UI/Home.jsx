@@ -19,17 +19,13 @@ var Home = React.createClass({
 
 	mixins: [IntlMixin, FluxibleMixin],
 
-    contextTypes: {
-        executeAction: React.PropTypes.func,
-    },
-
 	statics: {
 		storeListeners: [AuthStore],
-        // fetchData: function(context, params, query, done){
-        //     concurrent([
-        //         context.executeAction.bind(context, AuthActions.LoadSession, {})
-        //     ])
-        // }
+        fetchData: function (context, params, query, done) {
+            concurrent([
+                context.executeAction.bind(context, AuthActions.LoadSession, {})
+            ], done)
+        }
 	},
 
 	getInitialState: function(){
@@ -43,7 +39,7 @@ var Home = React.createClass({
 	},
 
 	onChange: function(){
-		this.setState(this.getStateFromStores());
+        this.setState(this.getStateFromStores());
 	},
 
 	render: function(){

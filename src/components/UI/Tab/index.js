@@ -1,4 +1,4 @@
 module.exports = {
-	TabHead: require('./TabHead'),
+	Tabs: require('./Tabs'),
 
 }

@@ -1,9 +1,8 @@
 var AuthActions = {};
 
 AuthActions.LoadSession =  function(context, payload, done){
-	var token = context.cookie.get('uuid') || false;
+	var token = context.cookie.get('userid') || false;
 	context.dispatch('LOAD_SESSION', token);
-
 	done();
 }
 

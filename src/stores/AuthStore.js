@@ -9,12 +9,14 @@ var AuthStore = createStore({
 	},
 
 	initialize: function(){
-        this.loginStatusCookie = null;
+        this.loginStatusCookie = false;
 	},
 
-	loadsession:function(uid){
-		this.loginStatusCookie = !this.loginStatusCookie;
-        this.emitChange();
+	loadsession:function(userid){
+		if(userid !== this.loginStatusCookie){
+			this.loginStatusCookie = userid;
+			this.emitChange();
+		}
 	},
 
     isLoginCookie: function(){

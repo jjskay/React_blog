@@ -1,3 +1,4 @@
 module.exports = {
-	AuthMixin: require('./AuthMixin')
+	AuthMixin: require('./AuthMixin'),
+	UrlStatic: require('./UrlStatic')
 }

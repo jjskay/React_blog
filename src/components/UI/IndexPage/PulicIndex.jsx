@@ -6,6 +6,9 @@ var { Route, RouteHandler, Link } = Router;
 var AuthStore = require('../../../stores/AuthStore');
 var AuthActions = require('../../../actions/AuthActions');
 
+var {PublicSlider} = require('../publicSlider');
+// var {UrlStatic} = require('../../../mixins')
+
 import FluxibleMixin from 'fluxible/addons/FluxibleMixin';
 
 var PulicIndex = React.createClass({
@@ -35,8 +38,19 @@ var PulicIndex = React.createClass({
 	},
 
 	render: function(){
+		var data = {
+			imgArr:["/img/slider.jpg","/img/slider1.jpg","/img/slider2.jpg","/img/slider3.jpg","/img/slider4.jpg","/img/slider5.jpg"],
+			textArr:["Slider1","Slider2","Slider3","Slider4","Slider5","Slider6"]
+		}
         return (
-           <p>This is Public.</p>
+           <div className="public-index">
+                <div className="banner">
+                    <PublicSlider {...data} />
+                    <div className="banner-tab">
+                        <h3>m@gicpoint</h3>
+                    </div>
+                </div>
+           </div>
         )
 	},
 
