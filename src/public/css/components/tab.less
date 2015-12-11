@@ -1,0 +1,115 @@
+.tab-container{
+	max-width:400px;
+	min-width:300px;
+	min-height:200px;
+	.auto;
+	margin-top:30px;
+	.tab-bar{
+	   .fixed;
+	   height:50px;
+	   line-height:50px;
+	   background:rgba(0,0,0,0.4);
+	   width:100%;
+	   .tab-item{
+	      .text-center;
+	      width:33.33333%;
+	      .fl;
+	      .pointer;
+	      .ps-r;
+	      color:rgba(255,255,255,0.6);
+	      &.selected,&.selected:hover{
+	          background:#fff;
+	          color:#000;
+	      }
+	      &:hover{
+	          color:#fff;
+	      }
+	      .tab-menu{
+	          .hide;
+	          .ps-a;
+	          left:0;
+	          top:30px;
+	      }
+	      &.hover{
+	         .tab-menu{
+		          .show;
+		      }
+	      }
+	      span{
+	          .show;
+	          .text-hide;
+	      }
+	   }
+	}
+	.tab-content{
+	   background:#fff;
+	   padding:30px 50px;
+	   .tab-content-item{
+	      .hide;
+	      &.selected{
+	         .show;
+	      }
+	      div{
+	         margin-bottom:15px;
+             input{
+                 width:100%;
+                 box-sizing:border-box;
+                 border:0;
+                 border:1px solid #bbb;
+                 padding:5px 20px;
+                 &[type=button]{
+                     border:0;
+                     background:#1ecd64
+                 }
+             }
+	      }
+	      p{
+	         a{
+	            .fr;
+	         }
+	      }
+	   }
+	}
+}
+
+@media (min-width: 601px) and (max-width: 800px){
+		.tab-container{
+		   margin-top:10px;
+		   .tab-bar{
+		       height:30px;
+		       line-height:30px;
+		   }
+		   .tab-content{
+                  padding:15px 20px;
+                  .tab-content-item{
+                      div{
+                          margin-bottom:8px;
+                      }
+                  }
+		     }
+		}
+}
+
+
+@media (max-width: 600px){
+		.tab-container{
+		   margin-top:10px;
+		   .tab-bar{
+		       height:30px;
+		       line-height:30px;
+		   }
+		   .tab-content{
+                  padding:15px 20px;
+                  .tab-content-item{
+                      div{
+                          margin-bottom:8px;
+                      }
+                  }
+		     }
+		}
+}
+
+
+
+
+

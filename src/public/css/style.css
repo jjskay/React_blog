@@ -19,6 +19,15 @@
 .text-right {
   text-align: right;
 }
+.text-hide {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.hide {
+  display: none;
+}
 .show {
   display: block;
 }
@@ -36,6 +45,20 @@
 .cfff {
   color: #fff;
 }
+.auto {
+  margin: 0 auto;
+}
+.fixed {
+  content: "";
+  display: table;
+  zoom: 1;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
 * {
   margin: 0;
   padding: 0;
@@ -44,16 +67,128 @@
   width: 100%;
   min-width: 320px;
 }
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
 body input[type=text] {
   padding: 5px 10px;
   border: 1px solid rgba(0, 0, 0, 0.7);
+}
+.tab-container {
+  max-width: 400px;
+  min-width: 300px;
+  min-height: 200px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.tab-container .tab-bar {
+  content: "";
+  display: table;
+  zoom: 1;
+  height: 50px;
+  line-height: 50px;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+.tab-container .tab-bar .tab-item {
+  text-align: center;
+  width: 33.33333%;
+  float: left;
+  cursor: pointer;
+  position: relative;
+  color: rgba(255, 255, 255, 0.6);
+}
+.tab-container .tab-bar .tab-item.selected,
+.tab-container .tab-bar .tab-item.selected:hover {
+  background: #fff;
+  color: #000;
+}
+.tab-container .tab-bar .tab-item:hover {
+  color: #fff;
+}
+.tab-container .tab-bar .tab-item .tab-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 30px;
+}
+.tab-container .tab-bar .tab-item.hover .tab-menu {
+  display: block;
+}
+.tab-container .tab-bar .tab-item span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.tab-container .tab-content {
+  background: #fff;
+  padding: 30px 50px;
+}
+.tab-container .tab-content .tab-content-item {
+  display: none;
+}
+.tab-container .tab-content .tab-content-item.selected {
+  display: block;
+}
+.tab-container .tab-content .tab-content-item div {
+  margin-bottom: 15px;
+}
+.tab-container .tab-content .tab-content-item div input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  border: 1px solid #bbb;
+  padding: 5px 20px;
+}
+.tab-container .tab-content .tab-content-item div input[type=button] {
+  border: 0;
+  background: #1ecd64;
+}
+.tab-container .tab-content .tab-content-item p a {
+  float: right;
+}
+@media (min-width: 601px) and (max-width: 800px) {
+  .tab-container {
+    margin-top: 10px;
+  }
+  .tab-container .tab-bar {
+    height: 30px;
+    line-height: 30px;
+  }
+  .tab-container .tab-content {
+    padding: 15px 20px;
+  }
+  .tab-container .tab-content .tab-content-item div {
+    margin-bottom: 8px;
+  }
+}
+@media (max-width: 600px) {
+  .tab-container {
+    margin-top: 10px;
+  }
+  .tab-container .tab-bar {
+    height: 30px;
+    line-height: 30px;
+  }
+  .tab-container .tab-content {
+    padding: 15px 20px;
+  }
+  .tab-container .tab-content .tab-content-item div {
+    margin-bottom: 8px;
+  }
 }
 .public-index .banner-tab {
   height: 100%;
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 7;
+  z-index: 18;
   background: rgba(0, 0, 0, 0.1);
   width: 100%;
 }
