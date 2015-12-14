@@ -49,6 +49,9 @@
 	      &.selected{
 	         .show;
 	      }
+	      & > span{
+	         color:red;
+	      }
 	      div{
 	         margin-bottom:15px;
              input{
@@ -57,15 +60,45 @@
                  border:0;
                  border:1px solid #bbb;
                  padding:5px 20px;
+                 .lh30;
                  &[type=button]{
                      border:0;
-                     background:#1ecd64
+                     background:#1ecd64;
+                     width:100%;
+                     .pointer;
+                     .lh30;
+                     .cfff;
+                     .pointer;
+                     padding:0;
                  }
              }
 	      }
 	      p{
+	         width:100%;
+	         .fixed;
+	         label{
+	            .fixed;
+	            .f14;
+	            .lh20;
+	            .fl;
+	            .pointer;
+	            span{
+	               .fr;
+	               .inline;
+	               .lh20;
+	               .text-center;
+		           &.password-checkbox{
+		           	   .fl;
+		               width:20px;
+		               border:1px solid rgba(0,0,0,0.8);
+		               .border-box;
+		               margin-right:5px;
+		            }
+	            }
+	         }
 	         a{
 	            .fr;
+                .f14;
 	         }
 	      }
 	   }

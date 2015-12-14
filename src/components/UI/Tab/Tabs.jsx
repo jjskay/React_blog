@@ -14,7 +14,7 @@ let Tabs = React.createClass({
     getInitialState(){
         let selectedIndex = 0;
         if (this.props.initialSelectedIndex && this.props.initialSelectedIndex < this.getTabCount()) {
-            selectedIndex = this.props.initialSelectedIndex;
+            selectedIndex = Number(this.props.initialSelectedIndex);
         }
         return {
             selectedIndex: selectedIndex,
@@ -48,7 +48,6 @@ let Tabs = React.createClass({
 
     render() {
         let tabContent = [];
-
         let tabs = React.Children.map(this.props.children, (tab, index) => {
             if (tab.type.displayName === "Tab") {
                 if (tab.props.children) {

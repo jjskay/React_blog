@@ -1,8 +1,35 @@
+*{margin:0;padding:0}
+#layout{
+	width:100%;
+	min-width:320px;
+}
+ul,li{list-style:none}
+a{text-decoration:none}
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1450072496_9968534.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1450072496_9968534.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1450072496_9968534.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1450072496_9968534.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1450072496_9968534.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
 .ps-r{
 	position:relative;
 }
 .ps-a{
 	position:absolute;
+}
+.ps-f{
+	position:fixed;
 }
 .pointer{
 	cursor:pointer;
@@ -10,8 +37,17 @@
 .f12{
 	font-size:12px;
 }
+.f16{
+	font-size:16px;
+}
+.f14{
+	font-size:14px;
+}
 .f24{
 	font-size:24px;
+}
+.f36{
+	font-size:36px;
 }
 .text-center{
 	text-align:center;
@@ -27,6 +63,9 @@
 }
 .hide{
 	display:none;
+}
+.inline{
+	display:inline-block;
 }
 .show{
 	display:block;
@@ -45,6 +84,13 @@
 .cfff{
 	color:#fff;
 }
+.c444{
+	color:#444;
+	font-family:'微软雅黑';
+}
+.c-red{
+	color:red;
+}
 .auto{
 	margin:0 auto;
 }
@@ -59,15 +105,53 @@
 .fr{
 	float:right;
 }
+h2,h3,h4,h5{
+	padding:15px 0;
+}
+.lh20{
+	height:20px;
+	line-height:20px;
+}
+.lh30{
+	height:30px;
+	line-height:30px;
+}
+.lh40{
+	height:40px;
+	line-height:40px;
+}
+.lh50{
+	height:50px;
+	line-height:50px;
+}
+.border-box{
+	box-sizing:border-box;
+}
+
+
+.fw-b{
+	font-weight:bold;
+}
+.fw-l{
+	font-weight:lighter;
+}
+.img{
+	.show;
+	width:100%;
+	border:0;
+}
 
 
 
 
 
-
-
-
-
-
+.remember-password:after{content:"\e600";color:#1ecd64;}
+.weibo:before { content: "\e601"; }
+.wechat:before { content: "\e602"; }
+.qq:before { content: "\e603"; }
+.icon-qq:before { content: "\e604"; }
+.icon-wechat:before { content: "\e605"; }
+.icon-firefox:before { content: "\e606"; }
+.icon-envelopeo:before { content: "\e607"; }
 
 

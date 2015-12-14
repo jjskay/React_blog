@@ -5,11 +5,17 @@ var AuthStore = createStore({
 
 	handlers: {
 		'LOAD_SESSION':'loadsession',
+		'REG_START': 'regStart',
+		'REG_SUCC': 'regSucc',
+		'REG_FAIL': 'regFail'
 
 	},
 
 	initialize: function(){
         this.loginStatusCookie = false;
+        this.regStatus = false;
+        this.regSuccIfo = false;
+        this.regFailErr = '';
 	},
 
 	loadsession:function(userid){
@@ -19,6 +25,34 @@ var AuthStore = createStore({
 		}
 	},
 
+	regStart: function(){
+        this.regStatus = true;
+        this.emitChange();
+	},
+
+	regSucc: function(user){
+		this.regSuccIfo = user;
+		this.regFailErr = '';
+        this.emitChange();
+	},
+
+	regFail: function(err){
+        this.regFailErr = err;
+        this.emitChange();
+	},
+
+	getRegStatus: function(){
+        return this.regStatus;
+	},
+
+	getSuccInfo: function(){
+        return this.regSuccIfo;
+	},
+
+	getRegErr: function(){
+		return this.regFailErr;
+	},
+
     isLoginCookie: function(){
          return this.loginStatusCookie
     },
@@ -26,11 +60,17 @@ var AuthStore = createStore({
 	dehydrate: function(){
 		return {
             loginStatusCookie: this.loginStatusCookie,
+            regStatus: this.regStatus,
+            regSuccIfo: this.regSuccIfo,
+            regFailErr: this.regFailErr
 		}
 	},
 
 	rehydrate: function(state){
         this.loginStatusCookie = state.loginStatusCookie;
+        this.regStatus = state.regStatus;
+        this.regSuccIfo = state.regSuccIfo;
+	    this.regFailErr = state.regFailErr;
 	}
 })
 

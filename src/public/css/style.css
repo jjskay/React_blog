@@ -1,8 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#layout {
+  width: 100%;
+  min-width: 320px;
+}
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1450072496_9968534.eot');
+  /* IE9*/
+  src: url('//at.alicdn.com/t/font_1450072496_9968534.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('//at.alicdn.com/t/font_1450072496_9968534.woff') format('woff'), /* chrome、firefox */ url('//at.alicdn.com/t/font_1450072496_9968534.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('//at.alicdn.com/t/font_1450072496_9968534.svg#iconfont') format('svg');
+  /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
 .ps-r {
   position: relative;
 }
 .ps-a {
   position: absolute;
+}
+.ps-f {
+  position: fixed;
 }
 .pointer {
   cursor: pointer;
@@ -10,8 +43,17 @@
 .f12 {
   font-size: 12px;
 }
+.f16 {
+  font-size: 16px;
+}
+.f14 {
+  font-size: 14px;
+}
 .f24 {
   font-size: 24px;
+}
+.f36 {
+  font-size: 36px;
 }
 .text-center {
   text-align: center;
@@ -27,6 +69,9 @@
 }
 .hide {
   display: none;
+}
+.inline {
+  display: inline-block;
 }
 .show {
   display: block;
@@ -45,6 +90,13 @@
 .cfff {
   color: #fff;
 }
+.c444 {
+  color: #444;
+  font-family: '微软雅黑';
+}
+.c-red {
+  color: red;
+}
 .auto {
   margin: 0 auto;
 }
@@ -59,20 +111,66 @@
 .fr {
   float: right;
 }
-* {
-  margin: 0;
-  padding: 0;
+h2,
+h3,
+h4,
+h5 {
+  padding: 15px 0;
 }
-#layout {
+.lh20 {
+  height: 20px;
+  line-height: 20px;
+}
+.lh30 {
+  height: 30px;
+  line-height: 30px;
+}
+.lh40 {
+  height: 40px;
+  line-height: 40px;
+}
+.lh50 {
+  height: 50px;
+  line-height: 50px;
+}
+.border-box {
+  box-sizing: border-box;
+}
+.fw-b {
+  font-weight: bold;
+}
+.fw-l {
+  font-weight: lighter;
+}
+.img {
+  display: block;
   width: 100%;
-  min-width: 320px;
+  border: 0;
 }
-ul,
-li {
-  list-style: none;
+.remember-password:after {
+  content: "\e600";
+  color: #1ecd64;
 }
-a {
-  text-decoration: none;
+.weibo:before {
+  content: "\e601";
+}
+.wechat:before {
+  content: "\e602";
+}
+.qq:before {
+  content: "\e603";
+}
+.icon-qq:before {
+  content: "\e604";
+}
+.icon-wechat:before {
+  content: "\e605";
+}
+.icon-firefox:before {
+  content: "\e606";
+}
+.icon-envelopeo:before {
+  content: "\e607";
 }
 body input[type=text] {
   padding: 5px 10px;
@@ -136,6 +234,9 @@ body input[type=text] {
 .tab-container .tab-content .tab-content-item.selected {
   display: block;
 }
+.tab-container .tab-content .tab-content-item > span {
+  color: red;
+}
 .tab-container .tab-content .tab-content-item div {
   margin-bottom: 15px;
 }
@@ -145,13 +246,52 @@ body input[type=text] {
   border: 0;
   border: 1px solid #bbb;
   padding: 5px 20px;
+  height: 30px;
+  line-height: 30px;
 }
 .tab-container .tab-content .tab-content-item div input[type=button] {
   border: 0;
   background: #1ecd64;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+}
+.tab-container .tab-content .tab-content-item p {
+  width: 100%;
+  content: "";
+  display: table;
+  zoom: 1;
+}
+.tab-container .tab-content .tab-content-item p label {
+  content: "";
+  display: table;
+  zoom: 1;
+  font-size: 14px;
+  height: 20px;
+  line-height: 20px;
+  float: left;
+  cursor: pointer;
+}
+.tab-container .tab-content .tab-content-item p label span {
+  float: right;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+.tab-container .tab-content .tab-content-item p label span.password-checkbox {
+  float: left;
+  width: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
+  margin-right: 5px;
 }
 .tab-container .tab-content .tab-content-item p a {
   float: right;
+  font-size: 14px;
 }
 @media (min-width: 601px) and (max-width: 800px) {
   .tab-container {
@@ -183,6 +323,9 @@ body input[type=text] {
     margin-bottom: 8px;
   }
 }
+.public-index {
+  padding-bottom: 10px;
+}
 .public-index .banner-tab {
   height: 100%;
   position: absolute;
@@ -197,6 +340,134 @@ body input[type=text] {
   color: #fff;
   padding-top: 150px;
   font-size: 24px;
+}
+.public-index .public-content .content-list {
+  color: #444;
+  font-family: '微软雅黑';
+  padding: 20px 10px;
+  text-align: center;
+}
+.public-index .public-content .content-list h3 {
+  font-size: 36px;
+  font-weight: lighter;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.public-index .public-content .content-list h5 {
+  font-weight: lighter;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.public-index .public-content .content-list.width-1000 {
+  width: 1000px;
+  margin: 0 auto;
+}
+.public-index .public-content .content-list .content-auto img {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+.public-index .public-content .fixed {
+  width: 100%;
+}
+.public-index .public-content .fixed span {
+  display: block;
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  width: 22%;
+  position: relative;
+  margin-left: 2%;
+}
+.public-index .public-content .fixed span i {
+  color: #fff;
+  width: 50px;
+  left: 0;
+  top: 0;
+  font-size: 24px;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  z-index: 2;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+.public-index .public-content .fixed span:first-child {
+  margin-left: 0;
+}
+.public-index .public-content .fixed span a {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  z-index: 9;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+}
+.public-index .public-content .auto-show-footer {
+  position: fixed;
+  left: 0;
+  bottom: -100px;
+  width: 100%;
+  padding: 25px 0;
+  border-top: 1px solid #eee;
+  box-shadow: 19px -2px 80px #bbb;
+  background: rgba(255, 255, 255, 0.95);
+  opacity: 0;
+  z-index: 10;
+  transition: all 0.8s ease 0.5s;
+  -webkit-transition: all 0.8s ease 0.5s;
+  -moz-transition: all 0.8s ease 0.5s;
+}
+.public-index .public-content .auto-show-footer.on {
+  bottom: 0;
+  opacity: 1;
+}
+.public-index .public-content .auto-show-footer > div {
+  width: 1000px;
+  margin: 0 auto;
+}
+.public-index .public-content .auto-show-footer > div > span {
+  float: left;
+  width: 20%;
+  height: 40px;
+  line-height: 40px;
+}
+.public-index .public-content .auto-show-footer > div .fixed {
+  float: right;
+  width: 80%;
+  text-align: center;
+}
+.public-index .public-content .auto-show-footer > div .fixed span i {
+  width: 40px;
+}
+.public-index .reg-succ-box {
+  transition: all 0.8s ease 0.5s;
+  -webkit-transition: all 0.8s ease 0.5s;
+  -moz-transition: all 0.8s ease 0.5s;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  z-index: 30;
+  color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.85);
+}
+.public-index .reg-succ-box.active {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+.public-index .reg-succ-box p {
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+  top: 50%;
+  margin-top: -20px;
 }
 @media (min-width: 601px) and (max-width: 800px) {
   .public-index .banner {
@@ -216,7 +487,7 @@ body input[type=text] {
   }
 }
 .banner {
-  height: 600px;
+  height: 700px;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.8);
   position: relative;
