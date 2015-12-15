@@ -45,10 +45,9 @@ var Home = React.createClass({
 	render: function(){
 		var ele;
         var head;
-        var data = {val:"333333"}
         if(this.state.isLoginCookie){
             ele = <UserIndex />;
-            head = <PageHead {...data} />;
+            head = <PageHead />;
         }else{
             ele = <PulicIndex />;
         }

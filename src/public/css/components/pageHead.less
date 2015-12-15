@@ -1,6 +1,129 @@
-body{
-	input[type=text]{
-	    padding:5px 10px;
-	    border:1px solid rgba(0,0,0,0.7);
+.page-header{
+	width:100%;
+	background:rgba(0,0,0,0.82);
+	.lh80;
+	.page-header-content{
+	     width:100%;
+	     max-width:1000px;
+	     .auto;
+	     .fixed;
+	     .cfff;
+	     &>a{
+	         .f24;
+	         .cfff;
+	         .lh30;
+	         margin-top:15px;
+	         padding:10px;
+	         .fl;
+	        .inline;
+	     }
+	     .page-header-nav{
+	         width:100%;
+	         max-width:800px;
+	         .fr;
+	         .fixed;
+	         & > div{
+	            .fr;
+	            .inline;
+	            &.header-nav{
+	                li{
+	                   .fl;
+	                   width:100px;
+	                   .text-center;
+	                   .ps-r;
+	                   & > a, & > span{
+	                      color:rgba(255,255,255,0.6);
+	                      .lh40;
+	                      margin-top:20px;
+	                      .show;
+	                      .page-menu-icon{
+	                          .inline;
+                               width: 0;
+							    height: 0;
+							    border-left: 3px solid transparent;
+							    border-right: 3px solid transparent;
+							    border-top: 3px solid rgba(255,255,255,255.6);
+							    margin-left:5px;
+	                      }
+		                   & > span.iconfont{
+		                       .ps-a;
+		                       top:10px;
+		                       right:10px;
+		                       .lh40;
+		                       .f12;
+		                       &:before{
+		                          color:red;
+		                          .f16;
+		                       }
+		                   }
+	                   }
+	                   .nav-menu-list{
+	                      .ps-a;
+	                      left:0;
+	                      top:80px;
+	                      .animation;
+	                      .lh30;
+	                      height:0;
+	                      overflow:hidden;
+	                      background:rgba(0,0,0,0.6);
+	                      padding:0 15px;
+	                      &.active{
+	                         height:auto;
+	                      }
+	                      a{
+	                         .show;
+	                         .cfff;
+	                      }
+	                   }
+	                }
+	            }
+	            &.nav-search{
+	                   width:200px;
+	                   .ps-r;
+	                   input[type=search]{
+	                       padding:5px 10px;
+	                       border:0;
+	                       border:1px solid rgba(0,0,0,0.6);
+	                       .lh30;
+	                       border-radius:15px;
+	                       margin-left:15px;
+	                       width:100%;
+	                       .border-box;
+	                   }
+                       .search-hot-div{
+                           .ps-a;
+                           top:80px;
+                           left:15px;
+                           opacity:0;
+                           .animation;
+                           background:rgba(0,0,0,.7);
+                           width:100%;
+                           &.active{
+                              opacity:1;
+                           }
+                           a{
+                               .lh30;
+                               .show;
+                               .text-hide;
+                               .cfff;
+                               padding:5px 10px;
+                           }
+                       }
+
+	            }
+	         }
+	     }
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,7 +12,7 @@ var AuthStore = createStore({
 	},
 
 	initialize: function(){
-        this.loginStatusCookie = false;
+        this.loginStatusCookie = true;
         this.regStatus = false;
         this.regSuccIfo = false;
         this.regFailErr = '';
@@ -20,8 +20,8 @@ var AuthStore = createStore({
 
 	loadsession:function(userid){
 		if(userid !== this.loginStatusCookie){
-			this.loginStatusCookie = userid;
-			this.emitChange();
+			// this.loginStatusCookie = userid;
+			// this.emitChange();
 		}
 	},
 
