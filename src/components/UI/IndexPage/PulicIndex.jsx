@@ -27,6 +27,10 @@ var PulicIndex = React.createClass({
 
   componentDidMount: function () {
       window.onscroll = this.onScrollEven;
+      if(JSON.parse(localStorage.locaUserInfo).username && JSON.parse(localStorage.locaUserInfo).password){
+          React.findDOMNode(this.refs.loginUser).value = JSON.parse(localStorage.locaUserInfo).username;
+          React.findDOMNode(this.refs.loginPasswd).value = JSON.parse(localStorage.locaUserInfo).password;
+      }
   },
 
 	getInitialState: function(){
@@ -36,16 +40,21 @@ var PulicIndex = React.createClass({
 	getStateFromStores: function(){
 		return {
 			isLogin: this.getStore(AuthStore).isLoginCookie(),
-      rememberStatus: false,
+      rememberStatus: true,
       showFooter: false,
       regStatus: this.getStore(AuthStore).getRegStatus(),
-      regError: this.getStore(AuthStore).getRegErr() || '',
-      loginErroe: '',
-      regSucc: this.getStore(AuthStore).getSuccInfo()
+      regError: this.getStore(AuthStore).getRegErr(),
+      loginError: this.getStore(AuthStore).getLoginError(),
+      regSucc: this.getStore(AuthStore).getSuccInfo(),
+      loginStatus: this.getStore(AuthStore).getLoginStatus(),
+      reloadStatus: this.getStore(AuthStore).getReloadStatus()
 		}
 	},
 
 	onChange: function(){
+    if(this.state.reloadStatus){
+          window.location.reload();
+      }
     var _ = this;
 		_.setState(this.getStateFromStores());
     if(_.state.regSucc){
@@ -91,10 +100,12 @@ var PulicIndex = React.createClass({
                                   <span>{this.state.regError}</span>
                              </Tab>
                              <Tab label={tabSections.tab2}>
-                                  <div><input type="text" placeholder="User" /></div>
-                                  <div><input type="password" placeholder="Password" /></div>
-                                  <div><input type="button" value='Login' onClick={this.clickLogin}/></div>
-                                  <span>{this.state.loginError}</span>
+                                  <form onSubmit={this.loginSub}>
+                                       <div><input ref="loginUser" type="text" placeholder="User" /></div>
+                                       <div><input ref="loginPasswd" type="password" placeholder="Password" /></div>
+                                       <div>{this.loginButton()}</div>
+                                       <span>{this.state.loginError}</span>
+                                  </form>
                                   <p>
                                     <CheckBox
                                            rememberChecked={this.rememberChecked}
@@ -181,6 +192,17 @@ var PulicIndex = React.createClass({
      return <input type="button" value={text} onClick={this.clickReg}/>;
   },
 
+  loginButton() {
+    var disabled;
+    var text = 'Login';
+    if(this.state.loginStatus){
+        text = 'Login...';
+        disabled = 'disabled';
+    }
+
+    return <input type="submit" value={text} onClick={this.clickLogin} disabled={disabled}/>;
+  },
+
   clickReg() {
      var u = false, p = false;
      var user = React.findDOMNode(this.refs.regUser).value.replace(/(^\s+)|(\s+$)/g, "");
@@ -191,9 +213,9 @@ var PulicIndex = React.createClass({
      user.length >= 4 ? u = true : u = false;
      passwd.length >= 6 ? p = true : p = false;
      if(!u){
-        this.setState({regError: 'Info:Username least four characters！'})
+        this.setState({regError: 'Info:Username least four characters'})
      }else if (u && !p){
-        this.setState({regError: 'Info:Password of at least six characters！'})
+        this.setState({regError: 'Info:Password of at least six characters'})
      }else{
         this.context.executeAction(AuthActions.Reg,{obj:obj});
         React.findDOMNode(this.refs.regUser).value = '';
@@ -202,8 +224,36 @@ var PulicIndex = React.createClass({
 
   },
 
-  clickLogin() {
+  locaStorageSave(obj){
+     localStorage.setItem('locaUserInfo',JSON.stringify(obj));
+  },
 
+  localStorageDelete(){
+     localStorage.removeItem('locaUserInfo');
+  },
+
+  loginSub(e) {
+     e.preventDefault();
+     var u = false, p = false;
+     var username = React.findDOMNode(this.refs.loginUser).value.replace(/(^\s+)|(\s+$)/g, "");
+     var password = React.findDOMNode(this.refs.loginPasswd).value.replace(/(^\s+)|(\s+$)/g, "");
+     username.length >= 4 ? u = true : u = false;
+     password.length >= 6 ? p = true : p = false;
+     var obj = {};
+     obj.username = username;
+     obj.password = password;
+     if(this.state.rememberStatus){
+         this.locaStorageSave(obj);
+     }else{
+         this.localStorageDelete();
+     }
+     if(!u){
+        username == '' ? this.setState({loginError: 'Error:Please enter your username!'}) : this.setState({loginError: 'Error:This user does not exist!'})
+     }else if(u && !p){
+        password == '' ? this.setState({loginError: 'Error:Please enter your password!'}) : this.setState({loginError: 'Error:Password error!'});
+     }else{
+        this.context.executeAction(AuthActions.Login,{obj: obj})
+     }
   }
 
 })

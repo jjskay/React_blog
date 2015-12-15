@@ -49,8 +49,9 @@
 	      &.selected{
 	         .show;
 	      }
-	      & > span{
+	      & > span, & > form > span{
 	         color:red;
+	         padding:10px 0;
 	      }
 	      div{
 	         margin-bottom:15px;
@@ -61,7 +62,7 @@
                  border:1px solid #bbb;
                  padding:5px 20px;
                  .lh30;
-                 &[type=button]{
+                 &[type=button],&[type=submit]{
                      border:0;
                      background:#1ecd64;
                      width:100%;

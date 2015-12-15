@@ -20,10 +20,8 @@ AuthActions.Reg = function(context, payload, done){
 					    }else{
 					     	context.dispatch('REG_FAIL', {err:'server error!'});
 					    }
-					    // done();
 				})
 		    }
-		    // done();
 	})
 
 
@@ -31,31 +29,18 @@ AuthActions.Reg = function(context, payload, done){
 	done();
 }
 
-AuthActions.getInfo = function(context, payload, done){
-   if(payload.value !== ''){
-      context.service.update('user', payload, {username:payload.value}, function(err, user){
-	        	if(user){
-					context.dispatch('INSERT_SUCC', {});
-		        }else{
-		        	context.dispatch('INSERT_FAIL', {});
-		        }
-		        done();
-		})
-   }else{
-   	  context.dispatch('GET_INFO_STATUS', true);
-   }
-}
-
-AuthActions.getUser = function(context, payload, done){
-
-    context.service.read('user', payload, {}, function(err, user){
-        	if(user){
-				context.dispatch('GET_LIST_SUCC', user);
-	        }else{
-	        	context.dispatch('GET_LIST_FAIL', {});
-	        }
-	        done();
-	})
+AuthActions.Login = function(context, payload, done){
+    context.dispatch('LOGIN_START',{});
+    context.service.read('user', payload, {obj:payload.obj}, function(err, user){
+       if(user.length > 0){
+       	   context.cookie.set('userid',user[0].username);
+       	   context.dispatch('LOGIN_SUCC',{user:user[0]});
+       	   context.getRouter().transitionTo('/');
+       }else{
+       	   context.dispatch('LOGIN_FAIL',{});
+       }
+    })
+    done();
 }
 
 

@@ -11,10 +11,15 @@ var UserService = {
     read: function (req, resource, params, config, callback) {
        var url = serverConfig.mongo.cash.url;
        var sessionUser = req.session;
-       console.log(params)
        MongoClient.connect(url, function(err, db){
            var collection = db.collection('collection_user');
-           collection.find({'username':params.obj.username}).toArray((err, res) => {
+           var query;
+           if(params.obj.password){
+              query = {'username':params.obj.username,'password':params.obj.password};
+           }else{
+              query = {'username':params.obj.username}
+           }
+           collection.find(query).toArray((err, res) => {
               if(err){
                 db.close();
                 callback(err, null)
@@ -36,6 +41,7 @@ var UserService = {
                   callback(err,null);
                   return;
                }
+               req.session.user = res.user;
                db.close();
                callback(err, res);
            })

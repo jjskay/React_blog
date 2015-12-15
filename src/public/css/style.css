@@ -380,8 +380,10 @@ h5 {
 .tab-container .tab-content .tab-content-item.selected {
   display: block;
 }
-.tab-container .tab-content .tab-content-item > span {
+.tab-container .tab-content .tab-content-item > span,
+.tab-container .tab-content .tab-content-item > form > span {
   color: red;
+  padding: 10px 0;
 }
 .tab-container .tab-content .tab-content-item div {
   margin-bottom: 15px;
@@ -395,7 +397,8 @@ h5 {
   height: 30px;
   line-height: 30px;
 }
-.tab-container .tab-content .tab-content-item div input[type=button] {
+.tab-container .tab-content .tab-content-item div input[type=button],
+.tab-container .tab-content .tab-content-item div input[type=submit] {
   border: 0;
   background: #1ecd64;
   width: 100%;
