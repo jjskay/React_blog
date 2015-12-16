@@ -45,10 +45,9 @@ server.use(csrf({cookie: true}));
 server.use(session(
     {
     	secret: 'secret',
-        key:'uId',
         resave: false,
         saveUninitialized: false,
-        cookie: {secure: true}
+        cookie: {secure: true, maxAge: 1200}
     }
 ))
 
@@ -56,7 +55,9 @@ server.use(express.static(path.join(__dirname, 'public')));
 
 var fetchrPlugin = app.getPlugin('FetchrPlugin');
 
-fetchrPlugin.registerService(api.user)
+fetchrPlugin.registerService(api.user);
+fetchrPlugin.registerService(api.LoadSession);
+fetchrPlugin.registerService(api.list);
 
 
 server.use(useragent.express());

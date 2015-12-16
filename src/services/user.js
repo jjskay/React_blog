@@ -1,7 +1,4 @@
 var _ = require('lodash');
-var fs = require('fs');
-import {UserMeta} from '../models';
-import request from 'superagent';
 import MongoClient from 'mongodb';
 import serverConfig from '../configs/server';
 
@@ -41,7 +38,7 @@ var UserService = {
                   callback(err,null);
                   return;
                }
-               req.session.user = res.user;
+               req.session.user = res.ops;
                db.close();
                callback(err, res);
            })

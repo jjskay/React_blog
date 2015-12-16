@@ -14,7 +14,7 @@ var AuthStore = createStore({
 	},
 
 	initialize: function(){
-        this.loginStatusCookie = false;
+        this.loginStatusCookie = null;
         this.regStatus = false;
         this.regSuccIfo = false;
         this.regFailErr = '';
@@ -28,9 +28,9 @@ var AuthStore = createStore({
         this.emitChange();
 	},
 
-	loadsession:function(userid){
-		if(userid !== this.loginStatusCookie){
-			this.loginStatusCookie = userid;
+	loadsession:function(userinfo){
+		if(userinfo && userinfo.username && userinfo.password){
+			this.loginStatusCookie = userinfo;
 			this.emitChange();
 		}
 	},

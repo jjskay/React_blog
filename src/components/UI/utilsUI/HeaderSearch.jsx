@@ -1,7 +1,9 @@
-import React from 'react';
-import classSet from 'classnames';
+var React = require('react');
+var classSet = require('classnames');
 var Router = require('react-router');
 var { Route, RouteHandler, Link } = Router;
+
+var FontIcon = require('./FontIcon')
 
 let HeaderSearch = React.createClass({
 
@@ -26,6 +28,7 @@ let HeaderSearch = React.createClass({
         });
         return (
              <div className="nav-search">
+                 <FontIcon iconClass="icon-search" iconColor="c-blank" />
                  <input type="search"
                     placeholder="Enter the content you want to search"
                     onBlur={this.propHide}

@@ -16,7 +16,7 @@ var {CheckBox, IconButton} = require('../utilsUI');
 var PulicIndex = React.createClass({
 
 	prpoTypes: {
-		isLogin: React.PropTypes.bool
+    loginStatusFunc: React.PropTypes.func
 	},
 
 	statics: {
@@ -39,7 +39,6 @@ var PulicIndex = React.createClass({
 
 	getStateFromStores: function(){
 		return {
-			isLogin: this.getStore(AuthStore).isLoginCookie(),
       rememberStatus: true,
       showFooter: false,
       regStatus: this.getStore(AuthStore).getRegStatus(),
@@ -47,18 +46,18 @@ var PulicIndex = React.createClass({
       loginError: this.getStore(AuthStore).getLoginError(),
       regSucc: this.getStore(AuthStore).getSuccInfo(),
       loginStatus: this.getStore(AuthStore).getLoginStatus(),
-      reloadStatus: this.getStore(AuthStore).getReloadStatus()
 		}
 	},
 
 	onChange: function(){
-    if(this.state.reloadStatus){
-          window.location.reload();
-      }
+    if(this.getStore(AuthStore).getReloadStatus()){
+        this.props.loginStatusFunc();
+    }
     var _ = this;
 		_.setState(this.getStateFromStores());
     if(_.state.regSucc){
        setTimeout(function(){
+           _.tabInex = 1;
            _.setState({regSucc: false});
        },3000)
     }
@@ -85,14 +84,13 @@ var PulicIndex = React.createClass({
          'reg-succ-box': true,
          'active': Boolean(this.state.regSucc.user)
     })
-    this.state.regSucc ? this.tabIndex = 1 : '';
         return (
            <div className="public-index">
                 <div className="banner">
                     <PublicSlider {...data} />
                     <div className="banner-tab">
                         <h3>m@gicpoint</h3>
-                        <Tabs initialSelectedIndex={this.tabIndex}>
+                        <Tabs initialSelectedIndex={this.tabInex}>
                              <Tab label={tabSections.tab1}>
                                   <div><input ref="regUser" type="text" placeholder="User" /></div>
                                   <div><input ref="regPasswd" type="password" placeholder="Password" /></div>

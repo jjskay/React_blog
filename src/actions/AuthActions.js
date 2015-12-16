@@ -1,8 +1,10 @@
 var AuthActions = {};
 
 AuthActions.LoadSession =  function(context, payload, done){
-	var token = context.cookie.get('userid') || false;
-	context.dispatch('LOAD_SESSION', token);
+	context.service.read('LoadSession', payload, {}, function(err, user){
+         var token = user ? null : user;
+         context.dispatch('LOAD_SESSION', token);
+	})
 	done();
 }
 
@@ -33,9 +35,8 @@ AuthActions.Login = function(context, payload, done){
     context.dispatch('LOGIN_START',{});
     context.service.read('user', payload, {obj:payload.obj}, function(err, user){
        if(user.length > 0){
-       	   context.cookie.set('userid',user[0].username);
        	   context.dispatch('LOGIN_SUCC',{user:user[0]});
-       	   context.getRouter().transitionTo('/');
+       	   context.dispatch('LOAD_SESSION', user[0]);
        }else{
        	   context.dispatch('LOGIN_FAIL',{});
        }

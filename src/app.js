@@ -15,6 +15,7 @@ app.plug(require('./plugins/router')());
 app.plug(require('./plugins/sessionStorage'));
 
 app.registerStore(require('./stores/AuthStore'));
+app.registerStore(require('./stores/ListStore'));
 
 module.exports = app;
 

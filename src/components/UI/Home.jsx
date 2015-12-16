@@ -42,6 +42,10 @@ var Home = React.createClass({
         this.setState(this.getStateFromStores());
 	},
 
+    onchangeLoginStatus: function(){
+        this.context.executeAction.bind(context, AuthActions.LoadSession, {})
+    },
+
 	render: function(){
 		var ele;
         var head;
@@ -49,20 +53,15 @@ var Home = React.createClass({
             ele = <UserIndex />;
             head = <PageHead />;
         }else{
-            ele = <PulicIndex />;
+            ele = <PulicIndex loginStatusFunc={this.onchangeLoginStatus} />;
         }
         return (
             <div id="layout">
                 {head}
                 {ele}
-                <span onClick={this.getLoginStatus}>Go</span>
             </div>
         )
-	},
-
-    getLoginStatus: function(){
-        this.context.executeAction(AuthActions.LoadSession, {})
-    }
+	}
 })
 
 

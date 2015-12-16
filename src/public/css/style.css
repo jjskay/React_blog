@@ -22,9 +22,9 @@ input {
 }
 @font-face {
   font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_1450149532_037245.eot');
+  src: url('//at.alicdn.com/t/font_1450256878_5203059.eot');
   /* IE9*/
-  src: url('//at.alicdn.com/t/font_1450149532_037245.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('//at.alicdn.com/t/font_1450149532_037245.woff') format('woff'), /* chrome、firefox */ url('//at.alicdn.com/t/font_1450149532_037245.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('//at.alicdn.com/t/font_1450149532_037245.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1450256878_5203059.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('//at.alicdn.com/t/font_1450256878_5203059.woff') format('woff'), /* chrome、firefox */ url('//at.alicdn.com/t/font_1450256878_5203059.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('//at.alicdn.com/t/font_1450256878_5203059.svg#iconfont') format('svg');
   /* iOS 4.1- */
 }
 .iconfont {
@@ -186,6 +186,9 @@ h5 {
 .icon-tip:before {
   content: "\e608";
 }
+.icon-search:before {
+  content: "\e609";
+}
 .page-header {
   width: 100%;
   background: rgba(0, 0, 0, 0.82);
@@ -232,9 +235,6 @@ h5 {
 .page-header .page-header-content .page-header-nav > div.header-nav li > a,
 .page-header .page-header-content .page-header-nav > div.header-nav li > span {
   color: rgba(255, 255, 255, 0.6);
-  height: 40px;
-  line-height: 40px;
-  margin-top: 20px;
   display: block;
 }
 .page-header .page-header-content .page-header-nav > div.header-nav li > a .page-menu-icon,
@@ -286,16 +286,28 @@ h5 {
   width: 200px;
   position: relative;
 }
+.page-header .page-header-content .page-header-nav > div.nav-search span.iconfont {
+  left: 22px;
+  top: 30px;
+  height: 20px;
+  line-height: 20px;
+  width: 20px;
+  text-align: center;
+  color: #fff;
+}
 .page-header .page-header-content .page-header-nav > div.nav-search input[type=search] {
   padding: 5px 10px;
   border: 0;
-  border: 1px solid rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
   height: 30px;
   line-height: 30px;
   border-radius: 15px;
   margin-left: 15px;
   width: 100%;
   box-sizing: border-box;
+  padding-left: 30px;
 }
 .page-header .page-header-content .page-header-nav > div.nav-search .search-hot-div {
   position: absolute;

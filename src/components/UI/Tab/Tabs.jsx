@@ -42,11 +42,18 @@ let Tabs = React.createClass({
         }
     },
 
+    componentDidUpdate() {
+        if (this.props.initialSelectedIndex && this.props.initialSelectedIndex !== this.state.selectedIndex && this.props.initialSelectedIndex < this.getTabCount()) {
+            this.setState({selectedIndex: this.props.initialSelectedIndex});
+        }
+    },
+
     onHoverLeave(){
         this.setState({hoverIndex: null});
     },
 
     render() {
+
         let tabContent = [];
         let tabs = React.Children.map(this.props.children, (tab, index) => {
             if (tab.type.displayName === "Tab") {
