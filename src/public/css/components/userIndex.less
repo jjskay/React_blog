@@ -1,0 +1,113 @@
+.user-content{
+	width:100%;
+	max-width:1000px;
+	.auto;
+	.fixed;
+	margin-top:30px;
+	.user-content-nav{
+	     .fr;
+	     width:18%;
+	     background:#eee;
+	     box-shadow:2px 4px 4px #666;
+	     .text-center;
+	     border:1px solid #bbb;
+	     line-height:30px;
+	     .border-box;
+	     .user-name{
+	        .lh40;
+            .ps-r;
+            border-bottom:1px solid #bbb;
+            box-shadow:0 3px 3px #bbb;
+            & > span{
+               width:70%;
+               .show;
+               .text-hide;
+               .ps-r;
+               i{
+                  .show;
+                  .ps-a;
+                  left:5px;
+                  top:0;
+                  .f20;
+               }
+            }
+            & > b{
+	               .show;
+	               .ps-a;
+	               width:30%;
+	               right:0;
+	               top:0;
+	               .text-center;
+	               border-left:1px solid #bbb;
+	               .pointer;
+	               i{
+	                    .inline;
+					    width: 0;
+					    height: 0;
+					    border-left: 5px solid transparent;
+					    border-right: 5px solid transparent;
+					    border-top: 5px solid #666;
+               }
+            }
+            .menu{
+               background:#666;
+               .ps-a;
+               .animation;
+               opacity:0;
+               top:-30px;
+               left:0;
+               width:100%;
+               z-index:12;
+               a{
+                 .cfff;
+               }
+               .iconfont{
+                  margin-left:30px;
+                  .f20;
+                  margin-top:-2px;
+               }
+               &.active{
+                  top:40px;
+                  opacity:1;
+               }
+            }
+	     }
+	     .user-nav-list{
+	         & > a{
+	             .ps-r;
+	             .show;
+	             border-bottom:1px solid rgba(0,0,0,0.3);
+	             color:#666;
+	             .iconfont{
+	                .ps-a;
+	                width:30px;
+	                .text-center;
+	                .show;
+	                left:0;
+	                top:0;
+	             }
+	             i{
+	                .show;
+	                width:20px;
+	                .lh20;
+	                .ps-a;
+	                border-radius:10px;
+	                top:5px;
+	                right:10px;
+	                background:#666;
+	                font-style:normal;
+	                .cfff;
+
+	             }
+	         }
+	     }
+	}
+	.user-content-list{
+	     .fl;
+	     width:80%;
+	     min-height:100px;
+	     line-height:30px;
+	     padding:10px;
+	     .border-box;
+	}
+}

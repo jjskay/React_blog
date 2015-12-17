@@ -13,6 +13,8 @@ app.plug(fetchrPlugin({
 app.plug(require('./plugins/cookie'));
 app.plug(require('./plugins/router')());
 app.plug(require('./plugins/sessionStorage'));
+app.plug(require('./plugins/filterData'));
+
 
 app.registerStore(require('./stores/AuthStore'));
 app.registerStore(require('./stores/ListStore'));

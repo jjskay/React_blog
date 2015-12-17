@@ -32,7 +32,7 @@ var UserService = {
        var url = serverConfig.mongo.cash.url;
        MongoClient.connect(url, function(err, db){
            var collection = db.collection('collection_user');
-           collection.insertMany([{'username':body.username,'password':body.password}],function(err, res){
+           collection.insertMany([{'username':body.username,'password':body.password,list:[]}],function(err, res){
                if(err){
                   db.close();
                   callback(err,null);

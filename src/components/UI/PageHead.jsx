@@ -33,9 +33,9 @@ var PageHead = React.createClass({
             val: '22222222222',
             navData: [
             				{text:'Home',menu:[]},
-            				{text:'Home',menu:[{text:'账号设置',path:'/'},{text:'寻找好友',path:'/'}]},
-            				{text:'Home',menu:[]},
-            				{text:'Home',menu:[]},
+                    {text:'APP',menu:[]},
+                    {text:'ART',menu:[]},
+            				{text:'MORE',menu:[{text:'账号设置',path:'/'},{text:'寻找好友',path:'/'}]},
             		 ],
             navSelectedIndex: 0,
             searchStatus: false,

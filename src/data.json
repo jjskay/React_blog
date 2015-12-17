@@ -1,1 +1,24 @@
-{"user":[{"name":"admin","email":"22@11.com","password":"123"},{"name":"admin222","email":"111@111.com","password":"111"},{"name":"admin11","email":"11@11.com","password":"123"},{"name":"LOL","email":"LOL@qq.com","password":"123"},{"name":"admin123","email":"3033@qq.com","password":"123"},{"name":"adqqq","email":"12@11.com","password":"123"},{"name":"111","email":"11@qq","password":"111"},{"name":"123","email":"123@qq","password":"123"}]}
+{
+	"username": "123",
+	"password": "1234",
+	"list": {
+		"note": [
+			{
+				"title1": "11",
+				"content": "111111111",
+				"createTime": "2012/07/07",
+				"id": 2,
+				"category": "note"
+			}
+		],
+		"article": [
+			{
+				"title1": "11",
+				"content": "111111111",
+				"createTime": "2012/07/07",
+				"id": 1,
+				"category": "article"
+			}
+		]
+	}
+}

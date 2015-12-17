@@ -1,5 +1,6 @@
 var React = require('react');
 
+var classSet = require('classnames');
 var Router = require('react-router');
 var { Route, RouteHandler, Link } = Router;
 var {IntlMixin,FormattedMessage} = require('react-intl');
@@ -8,49 +9,29 @@ var AuthStore = require('../../../stores/AuthStore');
 var ListActions = require('../../../actions/ListActions');
 var ListStore = require('../../../stores/ListStore');
 
-var FontIcon = require('../utilsUI/FontIcon')
+var FilterData = require('../../../utils/filterData')
+
+var {FontIcon, ArticleList} = require('../utilsUI/')
 
 var FluxibleMixin = require('fluxible/addons/FluxibleMixin');
 
 var UserIndex = React.createClass({
 
 	prpoTypes: {
-		isLogin: React.PropTypes.bool
+		menuStatus: React.PropTypes.bool,
+		user: React.PropTypes.object,
+		articleDelete: React.PropTypes.func,
+        addModuleShow: React.PropTypes.func,
+        addModule: React.PropTypes.bool
 	},
 
 	mixins: [FluxibleMixin, IntlMixin],
-
-	statics: {
-		storeListeners: [AuthStore, ListStore],
-		fetchData: function (context, params, query, done) {
-            concurrent([
-                context.executeAction.bind(context, ListActions.GetList, {})
-            ])
-		}
-	},
-
-	getInitialState: function(){
-		return this.getStateFromStores();
-	},
-
-	getStateFromStores: function(){
-		return {
-			isLogin: this.getStore(AuthStore).isLoginCookie(),
-			list: this.getStore(ListStore).getList(),
-			menuStatus: false,
-		}
-	},
-
-	onChange: function(){
-		this.setState(this.getStateFromStores());
-	},
 
 	render: function(){
         return (
            <div className="user-content">
                 {this.listRender()}
                 {this.userInfoRender()}
-           		<p onClick={this.getUser}>This is UserIndex.</p>
            </div>
         )
 	},
@@ -61,52 +42,75 @@ var UserIndex = React.createClass({
 
 	listRender: function(){
 		var views;
-		if(this.state.list.length > 0){
+		if(this.props.user && this.props.user.list.length > 0){
 			views = (
-               <div className="user-content-list"></div>
+               <div className="user-content-list">
+                    <ArticleList list={this.props.user.list} articleDelete={this.articleDelete} />
+               </div>
 			)
+		}else{
+			views = (<div className="user-content-list"><span>IS NONE!</span></div>);
 		}
+		return views;
+	},
+
+	articleDelete: function(id){
+        this.props.articleDelete(id);
 	},
 
 	userInfoRender: function(){
 		var data = {
 			username:'18888888',
 			userNavList:[
-               {title:'文章',iconClass:'icon-search',num:3},
-               {title:'文章',iconClass:'icon-search',num:3},
-               {title:'文章',iconClass:'icon-search',num:3},
-               {title:'文章',iconClass:'icon-search',num:3},
+               {title:'Note',iconClass:'icon-search',num:3,path:'/'},
+               {title:'Note',iconClass:'icon-search',num:3,path:'/'},
+               {title:'Note',iconClass:'icon-search',num:3,path:'/'},
+               {title:'Note',iconClass:'icon-search',num:3,path:'/'},
 			]
 		}
+		var menuClass = classSet({
+			'menu':true,
+			'active':this.props.addModule
+		})
+
+
+        var filter = new FilterData();
+        console.log(filter.allList(this.props.user.list))
 		return (
              <div className="user-content-nav">
                  <div className="user-name">
-                     <span>{data.username}<span>
-                     <span className="menu" onClick={this.addModule}>
-                     	<b></b>
-                        <div>
-                            <Link to="/">
-                                 <FontIcon iconClass="icon-add" iconColor="blank" />
+                     <span><i className="iconfont icon-user"></i>{this.props.user.username}</span>
+                     <b onClick={this.addModuleShow}><i></i></b>
+                     <div className={menuClass}>
+                         <Link to="/">
+                              <FontIcon iconClass="icon-add" iconColor="blank" />
                                  新建分类
-                            </Link>
-                        </div>
-                     <span>
+                         </Link>
+                     </div>
                  </div>
                  <div className="user-nav-list">
                      {
                      	data.userNavList.map((value, index) => {
                      		return (
-                     					<div>
-                     					    <FontIcon  iconClass={vaule.iconClass} iconColor="blank" />
-                     						{value.title}
-                     						<i>{value.num}</i>
-                     					</div>
+                     				<Link key={index} to={value.path}>
+                     					<FontIcon  iconClass={value.iconClass} iconColor="blank" />
+                     					{value.title}
+                     					<i>{value.num}</i>
+                     				</Link>
                      		)
                      	})
                      }
                  </div>
-             <div>
+             </div>
 		)
+	},
+
+	menuClass: function(){
+		console.log(11)
+	},
+
+	addModuleShow: function(){
+        this.props.addModuleShow();
 	}
 
 })

@@ -42,22 +42,22 @@ let HeaderNav = React.createClass({
                 </div>
             )
     	 }
-	     if(index>0){
+	     if(val.menu.length>0){
 	        return (
-                   <Link to="/">
+                   <span>
                    		{val.text}
                    		{menuIcon}
                    		<Tip text={index} bgColor="red" />
                    		{menuList}
-                   </Link>
+                   </span>
 	        )
 	     }else{
 	        return (
-		           <span>
+		          <Link to="/">
 		           		{val.text}
 		           		{menuIcon}
 		           		{menuList}
-		           </span>
+		           </Link>
 	        )
 	     }
 

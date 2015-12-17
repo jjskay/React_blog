@@ -28,6 +28,7 @@
 	            &.header-nav{
 	                li{
 	                   .fl;
+	                   .pointer;
 	                   width:100px;
 	                   .text-center;
 	                   .ps-r;
@@ -67,6 +68,7 @@
 	                      padding:0 15px;
 	                      &.active{
 	                         height:auto;
+	                         z-index:20;
 	                      }
 	                      a{
 	                         .show;
@@ -89,7 +91,6 @@
 	                   input[type=search]{
 	                       padding:5px 10px;
 	                       border:0;
-	                       border:1px solid rgba(255,255,255,0.6);
 	                       background:rgba(0,0,0,0.8);
 	                       .cfff;
 	                       .lh30;
@@ -104,11 +105,15 @@
                            top:80px;
                            left:15px;
                            opacity:0;
+                           height:0;
+                           overflow:hidden;
+                           z-index:9;
                            .animation;
                            background:rgba(0,0,0,.7);
                            width:100%;
                            &.active{
                               opacity:1;
+                              height:auto;
                            }
                            a{
                                .lh30;

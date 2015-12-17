@@ -11,6 +11,9 @@ var {AuthMixin} = require('../../mixins')
 
 var AuthStore = require('../../stores/AuthStore');
 var AuthActions = require('../../actions/AuthActions');
+var ListActions = require('../../actions/ListActions');
+var ListStore = require('../../stores/ListStore');
+
 
 var {UserIndex, PulicIndex} = require('./IndexPage');
 var PageHead = require('./PageHead')
@@ -20,11 +23,12 @@ var Home = React.createClass({
 	mixins: [IntlMixin, FluxibleMixin],
 
 	statics: {
-		storeListeners: [AuthStore],
+		storeListeners: [AuthStore, ListStore],
         fetchData: function (context, params, query, done) {
             concurrent([
                 context.executeAction.bind(context, AuthActions.LoadSession, {})
             ], done)
+
         }
 	},
 
@@ -34,7 +38,10 @@ var Home = React.createClass({
 
 	getStateFromStores: function(){
 		return {
-			isLoginCookie: this.getStore(AuthStore).isLoginCookie()
+			user: this.getStore(AuthStore).isLoginCookie(),
+            menuStatus: false,
+            messageStatus: false,
+            addModule: false
 		}
 	},
 
@@ -46,11 +53,27 @@ var Home = React.createClass({
         this.context.executeAction.bind(context, AuthActions.LoadSession, {})
     },
 
+    articleDelete: function(id){
+        this.context.executeAction.bind(context, ListActions.detele, {id:id})
+    },
+
+    onclickBoxSure: function(){
+
+    },
+
+    onclickBoxCancel: function(){
+
+    },
+
+    addModuleShow: function(){
+        this.setState({addModule: !this.state.addModule})
+    },
+
 	render: function(){
 		var ele;
         var head;
-        if(this.state.isLoginCookie){
-            ele = <UserIndex />;
+        if(this.state.user){
+            ele = <UserIndex menuStatus={this.state.menuStatus} user={this.state.user} articleDelete={this.articleDelete} addModule={this.state.addModule} addModuleShow={this.addModuleShow}/>;
             head = <PageHead />;
         }else{
             ele = <PulicIndex loginStatusFunc={this.onchangeLoginStatus} />;
@@ -59,6 +82,7 @@ var Home = React.createClass({
             <div id="layout">
                 {head}
                 {ele}
+                <confirmBox messageStatus={this.state.messageStatus} onclickBoxSure={this.onclickBoxSure} onclickBoxCancel={this.onclickBoxCancel}  />
             </div>
         )
 	}

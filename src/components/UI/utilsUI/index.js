@@ -4,5 +4,7 @@ module.exports = {
 	HeaderNav: require('./HeaderNav'),
 	HeaderSearch: require('./HeaderSearch'),
 	Tip: require('./Tip'),
-	FontIcon: require('./FontIcon')
+	FontIcon: require('./FontIcon'),
+	ArticleList: require('./ArticleList'),
+	confirmBox: require('./confirmBox'),
 }
