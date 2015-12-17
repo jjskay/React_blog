@@ -875,6 +875,7 @@ h5 {
 }
 .user-content .user-content-nav .user-name .menu a {
   color: #fff;
+  display: block;
 }
 .user-content .user-content-nav .user-name .menu .iconfont {
   margin-left: 30px;

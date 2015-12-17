@@ -109,7 +109,7 @@ var PulicIndex = React.createClass({
                                            rememberChecked={this.rememberChecked}
                                            text="Remember Password"
                                            rememberStatus={this.state.rememberStatus} />
-                                    <Link to="/">忘记密码&nbsp;&nbsp;|&nbsp;&nbsp;找回账号</Link>
+                                    <Link to="/">忘记密码|找回账号</Link>
                                    </p>
                              </Tab>
                              <Tab label={tabSections.tab3}>
