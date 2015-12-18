@@ -3,6 +3,7 @@ require('babel/register');
 
 var express = require('express');
 var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -11,6 +12,7 @@ var cookieParser = require('cookie-parser');
 var serialize = require('serialize-javascript');
 var csrf = require('csurf');
 var cors = require('cors');
+var serverConfig = require('./configs')
 
 var React = require('react');
 var Router = require('react-router');
@@ -47,6 +49,7 @@ server.use(session(
     	secret: 'secret',
         resave: false,
         saveUninitialized: false,
+        store: new MongoStore(serverConfig.mongo.session),
         cookie: {secure: true, maxAge: 1200}
     }
 ))
