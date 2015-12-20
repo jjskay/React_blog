@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser');
 var serialize = require('serialize-javascript');
 var csrf = require('csurf');
 var cors = require('cors');
-var serverConfig = require('./configs')
+var serverConfig = require('./configs/server')
 
 var React = require('react');
 var Router = require('react-router');
@@ -36,7 +36,9 @@ var customContextTypes = {
 
 server.set('views', path.join(__dirname, 'views'));
 server.set('view engine', 'jade');
-server.use(logger('dev'));
+if (serverConfig.server.enableLog) {
+    server.use(logger('dev'));
+}
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(cookieParser());
@@ -50,7 +52,6 @@ server.use(session(
         resave: false,
         saveUninitialized: false,
         store: new MongoStore(serverConfig.mongo.session),
-        cookie: {secure: true, maxAge: 1200}
     }
 ))
 
@@ -73,9 +74,6 @@ server.use(function(req, res, next){
 		req: req,
 		res: res,
 		config: config,
-		xhrContext: {
-			 _csrf: req.csrfToken(),
-		}
 	});
 	context.getActionContext().executeAction(AuthActions.LoadSession, {}, function(){
         var router = Router.create({

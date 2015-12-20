@@ -5,6 +5,7 @@ var Router = require('react-router');
 var { Route, RouteHandler, Link } = Router;
 var {IntlMixin,FormattedMessage} = require('react-intl');
 
+var AuthActions = require('../../../actions/AuthActions');
 var AuthStore = require('../../../stores/AuthStore');
 var ListActions = require('../../../actions/ListActions');
 var ListStore = require('../../../stores/ListStore');
@@ -105,11 +106,9 @@ var UserIndex = React.createClass({
 		)
 	},
 
-	menuClass: function(){
-		console.log(11)
-	},
-
 	addModuleShow: function(){
+        this.context.executeAction(AuthActions.LoadSession,{})
+        console.log(this.context)
         this.props.addModuleShow();
 	}
 

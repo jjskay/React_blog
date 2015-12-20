@@ -22,6 +22,7 @@ var UserService = {
                 callback(err, null)
                 return;
               }
+              req.session.user = res;
               db.close();
               callback(err, res);
            })
@@ -38,7 +39,6 @@ var UserService = {
                   callback(err,null);
                   return;
                }
-               req.session.user = res.ops;
                db.close();
                callback(err, res);
            })
