@@ -7,8 +7,7 @@ var LoadSession = {
     name: 'LoadSession',
     read: function (req, resource, params, config, callback) {
          var user = req.session.user;
-         console.log(req.session)
-         callback(null, user == null ? null : user);
+         callback(null, user == null || user.length == 0 ? null : user);
     }
 }
 

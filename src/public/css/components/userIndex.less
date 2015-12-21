@@ -63,7 +63,7 @@
                  .show;
                }
                .iconfont{
-                  margin-left:30px;
+                  margin-left:10px;
                   .f20;
                   margin-top:-2px;
                }
@@ -74,6 +74,7 @@
             }
 	     }
 	     .user-nav-list{
+	         min-height:150px;
 	         & > a{
 	             .ps-r;
 	             .show;
@@ -87,6 +88,14 @@
 	                left:0;
 	                top:0;
 	             }
+	             .delete-category{
+	                .show;
+	                .ps-a;
+	                width:30px;
+	                right:0;
+	                top:0;
+	                .f20;
+	             }
 	             i{
 	                .show;
 	                width:20px;
@@ -94,11 +103,14 @@
 	                .ps-a;
 	                border-radius:10px;
 	                top:5px;
-	                right:10px;
+	                right:25px;
 	                background:#666;
 	                font-style:normal;
 	                .cfff;
 
+	             }
+	             &.active{
+                    background:#bbb;
 	             }
 	         }
 	     }

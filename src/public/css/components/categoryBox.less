@@ -1,0 +1,57 @@
+.categoryBox{
+	.ps-f;
+	width:100%;
+	height:100%;
+	.animation;
+	left:0;
+	top:-200%;
+	background:rgba(0,0,0,0.7);
+	z-index:22;
+	&.active{
+	   top:0;
+	}
+	& > div{
+	    width:300px;
+	    margin:100px auto;
+	    background:#fff;
+	    min-height:150px;
+	    box-shadow:2px 4px 6px rgba(255,255,255,0.4);
+	    padding:50px 100px;
+        & > div{
+		    margin-bottom:20px;
+		    line-height:40px;
+		    &.category-name{
+		       label{
+		          .c666;
+		          input{
+	                 padding:5px;
+	                 border:0;
+	                 border:1px solid #bbb;
+		          }
+		       }
+		    }
+		    &.add-category-error{
+		       color:red;
+		    }
+		    &.sure-add-category{
+		       .fixed;
+		       width:80%;
+		       margin:0 auto;
+		       & > span{
+		           width:100px;
+		           .lh40;
+		           .text-center;
+		           .cfff;
+		           .fr;
+		           .show;
+		           background:#faa732;
+		           .pointer;
+			       &:first-child{
+			           background:#04c;
+			           .fl;
+			       }
+		       }
+		    }
+        }
+	}
+}

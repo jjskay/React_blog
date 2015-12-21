@@ -33,7 +33,7 @@ var UserService = {
        var url = serverConfig.mongo.cash.url;
        MongoClient.connect(url, function(err, db){
            var collection = db.collection('collection_user');
-           collection.insertMany([{'username':body.username,'password':body.password,list:[]}],function(err, res){
+           collection.insertMany([{'username':body.username,'password':body.password,list:[{categoryName:'All',categoryId:0,num:0}]}],function(err, res){
                if(err){
                   db.close();
                   callback(err,null);
@@ -43,8 +43,12 @@ var UserService = {
                callback(err, res);
            })
        })
+    },
+    delete: function (req, resource, params, config, callback) {
+        req.session.destroy(function (err) {
+            callback(err);
+        })
     }
-
 }
 
 

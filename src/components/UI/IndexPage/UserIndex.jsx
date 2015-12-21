@@ -12,7 +12,7 @@ var ListStore = require('../../../stores/ListStore');
 
 var FilterData = require('../../../utils/filterData')
 
-var {FontIcon, ArticleList} = require('../utilsUI/')
+var {FontIcon, ArticleList, AddCategory} = require('../utilsUI')
 
 var FluxibleMixin = require('fluxible/addons/FluxibleMixin');
 
@@ -22,8 +22,16 @@ var UserIndex = React.createClass({
 		menuStatus: React.PropTypes.bool,
 		user: React.PropTypes.object,
 		articleDelete: React.PropTypes.func,
-        addModuleShow: React.PropTypes.func,
-        addModule: React.PropTypes.bool
+    addModuleShow: React.PropTypes.func,
+    addModule: React.PropTypes.bool,
+    categoryIndex: React.PropTypes.number,
+    deleteCategory: React.PropTypes.func,
+    addCategory: React.PropTypes.func,
+    categoryVisiable: React.PropTypes.bool,
+    addCategroyError: React.PropTypes.string,
+    addCategoryClose: React.PropTypes.func,
+    addCategoryShow: React.PropTypes.func,
+
 	},
 
 	mixins: [FluxibleMixin, IntlMixin],
@@ -43,14 +51,19 @@ var UserIndex = React.createClass({
 
 	listRender: function(){
 		var views;
-		if(this.props.user && this.props.user.list.length > 0){
+		if(this.props.user.list[0].num > 0){
 			views = (
                <div className="user-content-list">
-                    <ArticleList list={this.props.user.list} articleDelete={this.articleDelete} />
+                    <ArticleList list='' articleDelete={this.articleDelete} />
                </div>
 			)
 		}else{
-			views = (<div className="user-content-list"><span>IS NONE!</span></div>);
+			views = (
+                <div className="user-content-list">
+                    <span>IS NONE!</span>
+                    <p><Link to="/add">Create Note!</Link></p>
+                </div>
+              );
 		}
 		return views;
 	},
@@ -60,44 +73,44 @@ var UserIndex = React.createClass({
 	},
 
 	userInfoRender: function(){
-		var data = {
-			username:'18888888',
-			userNavList:[
-               {title:'Note',iconClass:'icon-search',num:3,path:'/'},
-               {title:'Note',iconClass:'icon-search',num:3,path:'/'},
-               {title:'Note',iconClass:'icon-search',num:3,path:'/'},
-               {title:'Note',iconClass:'icon-search',num:3,path:'/'},
-			]
-		}
 		var menuClass = classSet({
 			'menu':true,
 			'active':this.props.addModule
 		})
-
-
-        var filter = new FilterData();
-        console.log(filter.allList(this.props.user.list))
 		return (
              <div className="user-content-nav">
                  <div className="user-name">
                      <span><i className="iconfont icon-user"></i>{this.props.user.username}</span>
                      <b onClick={this.addModuleShow}><i></i></b>
-                     <div className={menuClass}>
-                         <Link to="/">
+                     <div className={menuClass} onClick={this.addCategoryShow}>
+                         <a href="#">
                               <FontIcon iconClass="icon-add" iconColor="blank" />
-                                 新建分类
-                         </Link>
+                                 Create Category
+                         </a>
                      </div>
+                     <AddCategory
+                      addCategory={this.props.addCategory}
+                      categoryVisiable={this.props.categoryVisiable}
+                      addCategroyError={this.props.addCategroyError}
+                      addCategoryClose={this.props.addCategoryClose}/>
                  </div>
                  <div className="user-nav-list">
                      {
-                     	data.userNavList.map((value, index) => {
+                     	this.props.user.list && this.props.user.list.map((value, index) => {
+                        var categoryActiveClass = classSet({
+                          'active':value.categoryId == this.props.categoryIndex
+                        })
+                        var deleteCategory;
+                        if(value.categoryId !== 0 && value.num <= 0){
+                            deleteCategory = <span className="delete-category" onClick={this.deleteCategory.bind(this,value.categoryId)}>×</span>
+                        }
                      		return (
-                     				<Link key={index} to={value.path}>
-                     					<FontIcon  iconClass={value.iconClass} iconColor="blank" />
-                     					{value.title}
+                     				<a href="#" className={categoryActiveClass}  key={index}  onClick={this.getcategoryList.bind(this,value.categoryId)}>
+                     					<FontIcon  iconClass='icon-search' iconColor="blank" />
+                     					{value.categoryName}
                      					<i>{value.num}</i>
-                     				</Link>
+                              {deleteCategory}
+                     				</a>
                      		)
                      	})
                      }
@@ -107,10 +120,20 @@ var UserIndex = React.createClass({
 	},
 
 	addModuleShow: function(){
-        this.context.executeAction(AuthActions.LoadSession,{})
-        console.log(this.context)
         this.props.addModuleShow();
-	}
+	},
+
+  getcategoryList: function(id){
+    console.log(id)
+  },
+
+  deleteCategory: function(categoryId, categoryNum){
+     this.props.deleteCategory(categoryId);
+  },
+
+  addCategoryShow: function(){
+     this.props.addCategoryShow(true);
+  }
 
 })
 

@@ -6,5 +6,7 @@ module.exports = {
 	Tip: require('./Tip'),
 	FontIcon: require('./FontIcon'),
 	ArticleList: require('./ArticleList'),
-	confirmBox: require('./confirmBox'),
+	ConfirmBox: require('./ConfirmBox'),
+	AddCategory: require('./AddCategory'),
+	CategorySelector: require('./CategorySelector'),
 }

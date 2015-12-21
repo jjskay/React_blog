@@ -41,7 +41,10 @@ var Home = React.createClass({
 			user: this.getStore(AuthStore).isLoginCookie(),
             menuStatus: false,
             messageStatus: false,
-            addModule: false
+            addModule: false,
+            categoryIndex: this.getStore(AuthStore).getCategoryIndex(),
+            categoryVisiable: this.getStore(ListStore).getCategoryVisiable(),
+            addCategroyError: this.getStore(ListStore).getAddCategroyError(),
 		}
 	},
 
@@ -69,12 +72,31 @@ var Home = React.createClass({
         this.setState({addModule: !this.state.addModule})
     },
 
-	render: function(){
+    sginOut: function(){
+        this.context.executeAction(AuthActions.LogOut, {})
+    },
+
+    deleteCategory: function(categoryId, categoryNum){
+        this.context.executeAction(ListActions.DeleteCategory, {id:categoryId});
+    },
+    render: function(){
 		var ele;
         var head;
         if(this.state.user){
-            ele = <UserIndex menuStatus={this.state.menuStatus} user={this.state.user} articleDelete={this.articleDelete} addModule={this.state.addModule} addModuleShow={this.addModuleShow}/>;
-            head = <PageHead />;
+            ele = <UserIndex
+                  menuStatus={this.state.menuStatus}
+                  user={this.state.user}
+                  articleDelete={this.articleDelete}
+                  addModule={this.state.addModule}
+                  addModuleShow={this.addModuleShow}
+                  categoryIndex={this.state.categoryIndex}
+                  deleteCategory={this.deleteCategory}
+                  addCategory={this.addCategory}
+                  categoryVisiable={this.state.categoryVisiable}
+                  addCategroyError={this.state.addCategroyError}
+                  addCategoryClose={this.addCategoryShow}
+                  addCategoryShow={this.addCategoryShow}/>;
+            head = <PageHead sginOut={this.sginOut} />;
         }else{
             ele = <PulicIndex loginStatusFunc={this.onchangeLoginStatus} />;
         }
@@ -85,7 +107,19 @@ var Home = React.createClass({
                 <confirmBox messageStatus={this.state.messageStatus} onclickBoxSure={this.onclickBoxSure} onclickBoxCancel={this.onclickBoxCancel}  />
             </div>
         )
-	}
+	},
+
+    addCategory: function(val){
+        if(val && val.length > 1){
+            this.context.executeAction(ListActions.AddCategoryApi, {val:val});
+        }else{
+            this.context.executeAction(ListActions.AddCategoryError, {val:'Category name at least two characters!'});
+        }
+    },
+
+    addCategoryShow: function(val){
+        this.context.executeAction(ListActions.AddCategoryShow, {val:val});
+    }
 })
 
 

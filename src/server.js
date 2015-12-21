@@ -10,7 +10,6 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var serialize = require('serialize-javascript');
-var csrf = require('csurf');
 var cors = require('cors');
 var serverConfig = require('./configs/server')
 
@@ -44,7 +43,7 @@ server.use(bodyParser.urlencoded({extended: false}));
 server.use(cookieParser());
 server.use(favicon(__dirname + '/public/img/favicon.ico'));
 server.use(cors());
-server.use(csrf({cookie: true}));
+// server.use(csrf({cookie: true}));
 
 server.use(session(
     {
@@ -62,6 +61,7 @@ var fetchrPlugin = app.getPlugin('FetchrPlugin');
 fetchrPlugin.registerService(api.user);
 fetchrPlugin.registerService(api.LoadSession);
 fetchrPlugin.registerService(api.list);
+fetchrPlugin.registerService(api.category);
 
 
 server.use(useragent.express());

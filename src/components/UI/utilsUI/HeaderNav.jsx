@@ -7,20 +7,8 @@ let HeaderNav = React.createClass({
     propTypes: {
         navData: React.PropTypes.array,
         onclickMenuShow: React.PropTypes.func,
-        tabIndex: React.PropTypes.number
-    },
-
-	getDefaultProps() {
-        return {
-            navData: [
-            			{text:'Home'},
-            			{text:'Home'},
-            			{text:'Home'},
-            			{text:'Home'},
-            		 ],
-            onclickMenuShow: function(){},
-            tabIndex: 0
-        };
+        tabIndex: React.PropTypes.number,
+        sginOut: React.PropTypes.func,
     },
 
     navContent(val,index){
@@ -36,7 +24,7 @@ let HeaderNav = React.createClass({
                 <div className={tabSelectedClass}>
                    {
                    	  val.menu.map((value,index) => {
-                	      return <Link to={value.path}>{value.text}</Link>
+                	      return <a href="#" key={index} onClick={this.sginOut}>{value.text}</a>
                 	  })
                    }
                 </div>
@@ -67,6 +55,11 @@ let HeaderNav = React.createClass({
         this.props.onclickMenuShow(index,ev);
     },
 
+    sginOut: function(e){
+        e.preventDefault();
+        this.props.sginOut();
+    },
+
     render() {
         var checkedClass = classSet({
 
@@ -87,6 +80,7 @@ let HeaderNav = React.createClass({
              </div>
         );
     },
+
 });
 
 module.exports = HeaderNav;

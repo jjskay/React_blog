@@ -10,7 +10,9 @@ var AuthStore = createStore({
 		'REG_FAIL': 'regFail',
 		'LOGIN_START': 'loginStart',
 		'LOGIN_SUCC': 'loginSucc',
-        'LOGIN_FAIL': 'loginFail'
+        'LOGIN_FAIL': 'loginFail',
+        'LOG_OUT': 'logOut',
+        'CATEGORY_INDEX': 'ctegoryIndex',
 	},
 
 	initialize: function(){
@@ -21,6 +23,7 @@ var AuthStore = createStore({
         this.loginStatus = false;
         this.loginError = '';
         this.locaReload = false;
+        this.categoeyIndex = 0;
 	},
 
 	loginStart: function(){
@@ -29,10 +32,20 @@ var AuthStore = createStore({
 	},
 
 	loadsession:function(userinfo){
-		if(userinfo && userinfo.username && userinfo.password){
+		if(userinfo){
 			this.loginStatusCookie = userinfo;
 			this.emitChange();
 		}
+	},
+
+	ctegoryIndex: function(index){
+        this.categoeyIndex = index;
+        this.emitChange();
+	},
+
+	logOut: function(){
+        this.loginStatusCookie = null;
+        this.emitChange();
 	},
 
 	loginSucc: function(){
@@ -72,6 +85,10 @@ var AuthStore = createStore({
 
 	getSuccInfo: function(){
         return this.regSuccIfo;
+	},
+
+	getCategoryIndex: function(){
+        return this.categoeyIndex;
 	},
 
 	getRegErr: function(){

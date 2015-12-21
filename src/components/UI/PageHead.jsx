@@ -17,6 +17,7 @@ var PageHead = React.createClass({
 	propTypes: {
        val: React.PropTypes.string,
        navData: React.PropTypes.array,
+       sginOut: React.PropTypes.func,
 	},
 
 	statics: {
@@ -35,7 +36,7 @@ var PageHead = React.createClass({
             				{text:'Home',menu:[]},
                     {text:'APP',menu:[]},
                     {text:'ART',menu:[]},
-            				{text:'MORE',menu:[{text:'账号设置',path:'/'},{text:'寻找好友',path:'/'}]},
+            				{text:'MORE',menu:[{text:'Logout',path:'/'}]},
             		 ],
             navSelectedIndex: 0,
             searchStatus: false,
@@ -81,7 +82,7 @@ var PageHead = React.createClass({
                           searchStatus={this.state.searchStatus}
                           searchDataHot={this.props.searchDataHot}
                           onfocusShow={this.onfocusShow} />
-                          <HeaderNav navData={this.props.navData} onclickMenuShow={_.onclickMenuShow} tabIndex={_.state.navSelectedIndex} />
+                          <HeaderNav sginOut={_.props.sginOut} navData={_.props.navData} onclickMenuShow={_.onclickMenuShow} tabIndex={_.state.navSelectedIndex} />
                      </div>
                 </div>
         	</div>

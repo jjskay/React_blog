@@ -108,6 +108,9 @@ input {
   color: #444;
   font-family: '微软雅黑';
 }
+.c666 {
+  color: #666;
+}
 .c-red {
   color: red;
 }
@@ -878,13 +881,16 @@ h5 {
   display: block;
 }
 .user-content .user-content-nav .user-name .menu .iconfont {
-  margin-left: 30px;
+  margin-left: 10px;
   font-size: 20px;
   margin-top: -2px;
 }
 .user-content .user-content-nav .user-name .menu.active {
   top: 40px;
   opacity: 1;
+}
+.user-content .user-content-nav .user-nav-list {
+  min-height: 150px;
 }
 .user-content .user-content-nav .user-nav-list > a {
   position: relative;
@@ -900,6 +906,14 @@ h5 {
   left: 0;
   top: 0;
 }
+.user-content .user-content-nav .user-nav-list > a .delete-category {
+  display: block;
+  position: absolute;
+  width: 30px;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+}
 .user-content .user-content-nav .user-nav-list > a i {
   display: block;
   width: 20px;
@@ -908,10 +922,13 @@ h5 {
   position: absolute;
   border-radius: 10px;
   top: 5px;
-  right: 10px;
+  right: 25px;
   background: #666;
   font-style: normal;
   color: #fff;
+}
+.user-content .user-content-nav .user-nav-list > a.active {
+  background: #bbb;
 }
 .user-content .user-content-list {
   float: left;
@@ -920,4 +937,72 @@ h5 {
   line-height: 30px;
   padding: 0 10px;
   box-sizing: border-box;
+}
+.categoryBox {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  transition: all 0.8s ease 0.5s;
+  -webkit-transition: all 0.8s ease 0.5s;
+  -moz-transition: all 0.8s ease 0.5s;
+  left: 0;
+  top: -200%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 22;
+}
+.categoryBox.active {
+  top: 0;
+}
+.categoryBox > div {
+  width: 300px;
+  margin: 100px auto;
+  background: #fff;
+  min-height: 150px;
+  box-shadow: 2px 4px 6px rgba(255, 255, 255, 0.4);
+  padding: 50px 100px;
+}
+.categoryBox > div > div {
+  margin-bottom: 20px;
+  line-height: 40px;
+}
+.categoryBox > div > div.category-name label {
+  color: #666;
+}
+.categoryBox > div > div.category-name label input {
+  padding: 5px;
+  border: 0;
+  border: 1px solid #bbb;
+}
+.categoryBox > div > div.add-category-error {
+  color: red;
+}
+.categoryBox > div > div.sure-add-category {
+  content: "";
+  display: table;
+  zoom: 1;
+  width: 80%;
+  margin: 0 auto;
+}
+.categoryBox > div > div.sure-add-category > span {
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  float: right;
+  display: block;
+  background: #faa732;
+  cursor: pointer;
+}
+.categoryBox > div > div.sure-add-category > span:first-child {
+  background: #04c;
+  float: left;
+}
+.add-content {
+  width: 800px;
+  margin: 0 auto;
+  padding: 40px 100px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.4);
+  min-height: 100%;
 }
