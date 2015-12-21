@@ -26,7 +26,11 @@ var Home = React.createClass({
         fetchData: function (context, params, query, done) {
             concurrent([
                 context.executeAction.bind(context, AuthActions.LoadSession, {})
-            ], done)
+            ],function(){
+                if(!context.getStore(AuthStore).isLoginCookie()){
+
+                }
+            } , done)
         }
 	},
 
