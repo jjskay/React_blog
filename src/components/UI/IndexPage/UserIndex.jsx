@@ -51,7 +51,7 @@ var UserIndex = React.createClass({
 
 	listRender: function(){
 		var views;
-		if(this.props.user.list[0].num > 0){
+		if(this.props.user.list.length > 0 && this.props.user.list[0].num > 0){
 			views = (
                <div className="user-content-list">
                     <ArticleList list='' articleDelete={this.articleDelete} />

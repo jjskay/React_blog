@@ -6,10 +6,11 @@ var AuthStore = require('../stores/AuthStore');
 var AuthMixin = {
     statics: {
         willTransitionTo: function (transition) {
-            var isLoginCookie = transition.context
+            var isLogin = transition.context
                 .getActionContext().getStore(AuthStore).isLoginCookie();
-            if (!isLoginCookie) {
-                transition.redirect('/login');
+                console.log(isLogin)
+            if (!isLogin) {
+                transition.redirect('/');
             }
         }
     }

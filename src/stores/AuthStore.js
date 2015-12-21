@@ -108,7 +108,8 @@ var AuthStore = createStore({
 	},
 
     isLoginCookie: function(){
-         return this.loginStatusCookie
+    	 console.log(this.loginStatusCookie)
+         return this.loginStatusCookie;
     },
 
 	dehydrate: function(){

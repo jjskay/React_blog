@@ -19,18 +19,14 @@ var AuthMixins = require('../../utils/AuthMixins');
 
 var Home = React.createClass({
 
-	mixins: [IntlMixin, FluxibleMixin, AuthMixins],
+	mixins: [State, Navigation, FluxibleMixin, IntlMixin, AuthMixin],
 
 	statics: {
 		storeListeners: [AuthStore, ListStore],
         fetchData: function (context, params, query, done) {
             concurrent([
                 context.executeAction.bind(context, AuthActions.LoadSession, {})
-            ],function(){
-                if(!context.getStore(AuthStore).isLoginCookie()){
-
-                }
-            } , done)
+            ], done)
         }
 	},
 
@@ -46,7 +42,7 @@ var Home = React.createClass({
 	},
 
 	onChange: function(){
-		if(!this.state.isLoginCookie){
+		if(!this.state.categoryList){
 			this.transitionTo('/');
 		}
         this.setState(this.getStateFromStores());
