@@ -742,7 +742,7 @@ h5 {
   opacity: 0;
 }
 .article-list {
-  padding-left: 100px;
+  padding-left: 150px;
 }
 .article-list .articles {
   position: relative;
@@ -755,13 +755,13 @@ h5 {
 .article-list .articles > span {
   position: absolute;
   top: 0;
-  left: -110px;
+  left: -150px;
   background: #fff;
   color: #666;
   display: block;
-  width: 80px;
-  height: 40px;
-  line-height: 40px;
+  width: 100px;
+  lin-height: 30px;
+  padding: 10px;
   box-shadow: 2px 4px 6px #666;
   text-align: center;
 }
@@ -874,7 +874,7 @@ h5 {
   top: -30px;
   left: 0;
   width: 100%;
-  z-index: 12;
+  z-index: -10;
 }
 .user-content .user-content-nav .user-name .menu a {
   color: #fff;
@@ -888,6 +888,7 @@ h5 {
 .user-content .user-content-nav .user-name .menu.active {
   top: 40px;
   opacity: 1;
+  z-index: 15;
 }
 .user-content .user-content-nav .user-nav-list {
   min-height: 150px;
@@ -930,6 +931,15 @@ h5 {
 }
 .user-content .user-content-nav .user-nav-list > span.active {
   background: #bbb;
+}
+.user-content .user-content-nav .user-nav-list > span:first-child {
+  padding-right: 30px;
+  font-weight: bold;
+  color: #666;
+}
+.user-content .user-content-nav .user-nav-list > span:first-child > .iconfont,
+.user-content .user-content-nav .user-nav-list > span:first-child > i {
+  font-weight: 200;
 }
 .user-content .user-content-list {
   float: left;

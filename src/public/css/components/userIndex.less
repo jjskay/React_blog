@@ -57,7 +57,7 @@
                top:-30px;
                left:0;
                width:100%;
-               z-index:12;
+               z-index:-10;
                a{
                  .cfff;
                  .show;
@@ -70,6 +70,7 @@
                &.active{
                   top:40px;
                   opacity:1;
+                  z-index:15;
                }
             }
 	     }
@@ -112,6 +113,14 @@
 	             }
 	             &.active{
                     background:#bbb;
+	             }
+	             &:first-child{
+	                padding-right:30px;
+	                font-weight:bold;
+	                color:#666;
+	                & > .iconfont,& > i{
+                      font-weight:200;
+	                }
 	             }
 	         }
 	     }

@@ -121,6 +121,7 @@ var Home = React.createClass({
         	obj.categoryId = categoryId;
         	obj.username = this.state.categoryList.username;
         	obj.createTime = new Date().getTime();
+            obj.categoryName = this.state.categorySelected.name;
         	this.context.executeAction(ListActions.AddArticle,{obj:obj});
         }else{
         	this.context.executeAction(ListActions.SubmitError,{error:error});
