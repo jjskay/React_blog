@@ -5,4 +5,104 @@
 	background:rgba(255,255,255,0.6);
 	box-shadow:3px 4px 6px rgba(0,0,0, 0.4);
 	min-height:100%;
+	& > div{
+	    line-height:30px;
+	    margin-bottom:10px;
+	    label{
+	       input{
+	           border:0;
+	           border:1px solid #bbb;
+	           padding:0 10px;
+	           min-width:400px;
+	           .lh30;
+	       }
+	    }
+	    .category-seletor{
+	       .ps-r;
+	       padding-left:70px;
+	       .category-seleted{
+	          border:1px solid #bbb;
+	          .lh30;
+	          padding:0 10px;
+	          background:#fff;
+	          max-width:400px;
+	          .pointer;
+	          .ps-r;
+	          b{
+	                .show;
+				    width: 0;
+				    height: 0;
+				    border-left: 6px solid transparent;
+				    border-right: 6px solid transparent;
+				    border-top: 8px solid #888;
+				    .ps-a;
+				    right:10px;
+				    top:10px;
+	          }
+	       }
+	       .category-seletor-menu{
+	          max-width:420px;
+	          width:100%;
+	          .ps-a;
+	          height:0px;
+	          overflow-y:scroll;
+	          border:1px solid #bbb;
+	          .animation;
+	          left:70px;
+	          top:31px;
+	          opacity:0;
+	          background:#fff;
+	          &.active{
+                  height:250px;
+                  opacity:1;
+	          }
+	          p{
+	             .lh30;
+	             padding:0 5%;
+	             width:90%;
+	             .pointer;
+	             &:hover{
+	                background:#bbb;
+	                .cfff;
+	             }
+	          }
+	       }
+	    }
+	    &.add-conetnt-body{
+	       & > textarea{
+	           min-width:600px;
+	           min-height:300px;
+	           padding:15px;
+	       }
+	    }
+	}
+	& > p{
+	   .fixed;
+	   width:60%;
+	   .auto;
+	   .lh30;
+	   &.atricle-err{
+	      width:100%;
+	      padding-left:55px;
+	      .border-box;
+	      span{
+             background:none;
+             color:red;
+          }
+	   }
+       span{
+          width:80px;
+          .text-center;
+          background:#04c;
+          .pointer;
+          .cfff;
+       }
+       a{
+          width:80px;
+          .text-center;
+          background:#04c;
+          .pointer;
+          .cfff;
+       }
+	}
 }

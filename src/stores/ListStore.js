@@ -7,13 +7,35 @@ var ListStore = createStore({
 		'GET_LIST':'listInfo',
 		'ADD_CATEGORY_SHOW': 'addCategoryShod',
 		'ADD_CATEGORY_ERROR': 'addCategoryError',
+		'CATEGORY_CHANGE': 'categoryChange',
+		'LOAD_START': 'loadStart',
+		'LOAD_END': 'loadEnd',
+		'ADD_ATRICLE_ERR': 'addAtricle_err',
+		'ADD_ARTICLE_SUCC': 'addAtricleSucc',
+		'STORE_ARTICLES':'storeArticles'
 	},
 
 	initialize: function(){
         this.list = [];
         this.categoryVisiable = false;
         this.addCategroyError = '';
-        this.categoryShow = false;
+        this.categorySelected = {
+        	name:'Please select category!',
+        	id:null,
+        	bool:false
+        };
+        this.articleError = '';
+        this.loadStatus = false;
+	},
+
+	addAtricle_err: function(err){
+		this.articleError = err;
+		this.emitChange();
+	},
+
+	addAtricleSucc: function(){
+        this.articleError = '';
+        this.emitChange();
 	},
 
 	listInfo: function(list){
@@ -23,6 +45,23 @@ var ListStore = createStore({
 
 	addCategoryError: function(val){
         this.addCategroyError = val.val;
+        this.emitChange();
+	},
+
+	loadStart: function(){
+        this.loadStatus = true;
+        this.emitChange();
+	},
+
+	loadEnd: function(){
+		this.loadStatus = false;
+        this.emitChange();
+	},
+
+	categoryChange: function(val){
+		if(val.name !== ''){this.categorySelected.name = val.name}
+	    if(val.id !== ''){this.categorySelected.id = val.id};
+        this.categorySelected.bool = !val.bool;
         this.emitChange();
 	},
 
@@ -39,12 +78,29 @@ var ListStore = createStore({
          return this.categoryVisiable;
 	},
 
-	getCategoryShow: function(){
-         return this.categoryShow;
-	},
-
 	getAddCategroyError: function(){
          return this.addCategroyError;
+	},
+
+	getCategorySelected: function(){
+         return this.categorySelected
+	},
+
+	getArticleError: function(){
+		return this.articleError;
+	},
+
+	getLoadStatus: function(){
+        return this.loadStatus;
+	},
+
+	storeArticles:function(list) {
+		this.articlesList=list.list;
+		this.emitChange();
+	},
+
+	getArticles:function(){
+		return this.articlesList;
 	},
 
 	dehydrate: function(){
@@ -52,7 +108,9 @@ var ListStore = createStore({
             list: this.list,
             categoryVisiable: this.categoryVisiable,
             addCategroyError: this.addCategroyError,
-            categoryShow: this.categoryShow,
+            categorySelected: this.categorySelected,
+            articleError: this.articleError,
+            articlesList:this.articlesList
 		}
 	},
 
@@ -61,7 +119,9 @@ var ListStore = createStore({
         this.list = state.list;
         this.categoryVisiable = state.categoryVisiable;
         this.addCategroyError = state.addCategroyError;
-        this.categoryShow = state.categoryShow;
+        this.categorySelected = state.categorySelected;
+        this.articleError = state.articleError;
+        this.articlesList=state.articlesList;
 	}
 })
 

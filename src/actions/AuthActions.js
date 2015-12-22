@@ -5,8 +5,13 @@ AuthActions.LoadSession =  function(context, payload, done){
 	context.service.read('LoadSession', payload, {}, function(err, user){
          var user = user ? user[0] : null;
          context.dispatch('LOAD_SESSION', user);
+		done();
 	})
-	done();
+}
+
+AuthActions.CategoryIndexChange  = function(context, payload, done){
+    context.dispatch('CATEGORY_INDEX_CHANGE',{id:payload.id});
+    done();
 }
 
 AuthActions.Reg = function(context, payload, done){
@@ -25,11 +30,9 @@ AuthActions.Reg = function(context, payload, done){
 					    }
 				})
 		    }
+			done();
 	})
 
-
-
-	done();
 }
 
 AuthActions.Login = function(context, payload, done){
@@ -42,8 +45,8 @@ AuthActions.Login = function(context, payload, done){
        }else{
        	   context.dispatch('LOGIN_FAIL',{});
        }
+      done();
     })
-    done();
 }
 
 AuthActions.LogOut = function(context, payload, done){

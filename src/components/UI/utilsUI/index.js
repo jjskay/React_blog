@@ -9,4 +9,5 @@ module.exports = {
 	ConfirmBox: require('./ConfirmBox'),
 	AddCategory: require('./AddCategory'),
 	CategorySelector: require('./CategorySelector'),
+	LoadBox: require('./LoadBox')
 }

@@ -21,11 +21,11 @@ let ArticleList = React.createClass({
                     this.props.list.map((val,index) => {
                     	return (
                             <div key={index} className="articles">
-                                <Link to={val.path}>{val.title}</Link>
+                                <Link to='/'>{val.title}</Link>
                                 <span>{val.createTime}</span>
                                 <p className="article-manage">
                                     <span onClick={this.articleDelete.bind(this,val.id)}><FontIcon iconClass="icon-delete" iconColor="black" />Delete</span>
-                                    <Link to={val.id}><FontIcon iconClass="icon-edit" iconColor="black" />Edit</Link>
+                                    <Link to='/'><FontIcon iconClass="icon-edit" iconColor="black" />Edit</Link>
                                 </p>
                             </div>
                     	)

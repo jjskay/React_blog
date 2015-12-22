@@ -91,9 +91,9 @@ input {
   display: block;
 }
 .animation {
-  transition: all 0.8s ease 0.5s;
-  -webkit-transition: all 0.8s ease 0.5s;
-  -moz-transition: all 0.8s ease 0.5s;
+  transition: all 0.8s ease 0.2s;
+  -webkit-transition: all 0.8s ease 0.2s;
+  -moz-transition: all 0.8s ease 0.2s;
 }
 .oc-hide {
   opacity: 0;
@@ -288,9 +288,9 @@ h5 {
   position: absolute;
   left: 0;
   top: 80px;
-  transition: all 0.8s ease 0.5s;
-  -webkit-transition: all 0.8s ease 0.5s;
-  -moz-transition: all 0.8s ease 0.5s;
+  transition: all 0.8s ease 0.2s;
+  -webkit-transition: all 0.8s ease 0.2s;
+  -moz-transition: all 0.8s ease 0.2s;
   height: 30px;
   line-height: 30px;
   height: 0;
@@ -340,9 +340,9 @@ h5 {
   height: 0;
   overflow: hidden;
   z-index: 9;
-  transition: all 0.8s ease 0.5s;
-  -webkit-transition: all 0.8s ease 0.5s;
-  -moz-transition: all 0.8s ease 0.5s;
+  transition: all 0.8s ease 0.2s;
+  -webkit-transition: all 0.8s ease 0.2s;
+  -moz-transition: all 0.8s ease 0.2s;
   background: rgba(0, 0, 0, 0.7);
   width: 100%;
 }
@@ -604,9 +604,9 @@ h5 {
   background: rgba(255, 255, 255, 0.95);
   opacity: 0;
   z-index: 10;
-  transition: all 0.8s ease 0.5s;
-  -webkit-transition: all 0.8s ease 0.5s;
-  -moz-transition: all 0.8s ease 0.5s;
+  transition: all 0.8s ease 0.2s;
+  -webkit-transition: all 0.8s ease 0.2s;
+  -moz-transition: all 0.8s ease 0.2s;
 }
 .public-index .public-content .auto-show-footer.on {
   bottom: 0;
@@ -631,9 +631,9 @@ h5 {
   width: 40px;
 }
 .public-index .reg-succ-box {
-  transition: all 0.8s ease 0.5s;
-  -webkit-transition: all 0.8s ease 0.5s;
-  -moz-transition: all 0.8s ease 0.5s;
+  transition: all 0.8s ease 0.2s;
+  -webkit-transition: all 0.8s ease 0.2s;
+  -moz-transition: all 0.8s ease 0.2s;
   width: 0;
   height: 0;
   opacity: 0;
@@ -731,9 +731,9 @@ h5 {
   height: 30px;
   line-height: 30px;
   width: 100px;
-  transition: all 0.8s ease 0.5s;
-  -webkit-transition: all 0.8s ease 0.5s;
-  -moz-transition: all 0.8s ease 0.5s;
+  transition: all 0.8s ease 0.2s;
+  -webkit-transition: all 0.8s ease 0.2s;
+  -moz-transition: all 0.8s ease 0.2s;
 }
 .banner .slider-text.add-active {
   opacity: 1;
@@ -867,9 +867,9 @@ h5 {
 .user-content .user-content-nav .user-name .menu {
   background: #666;
   position: absolute;
-  transition: all 0.8s ease 0.5s;
-  -webkit-transition: all 0.8s ease 0.5s;
-  -moz-transition: all 0.8s ease 0.5s;
+  transition: all 0.8s ease 0.2s;
+  -webkit-transition: all 0.8s ease 0.2s;
+  -moz-transition: all 0.8s ease 0.2s;
   opacity: 0;
   top: -30px;
   left: 0;
@@ -892,13 +892,14 @@ h5 {
 .user-content .user-content-nav .user-nav-list {
   min-height: 150px;
 }
-.user-content .user-content-nav .user-nav-list > a {
+.user-content .user-content-nav .user-nav-list > span {
   position: relative;
+  cursor: pointer;
   display: block;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   color: #666;
 }
-.user-content .user-content-nav .user-nav-list > a .iconfont {
+.user-content .user-content-nav .user-nav-list > span .iconfont {
   position: absolute;
   width: 30px;
   text-align: center;
@@ -906,7 +907,7 @@ h5 {
   left: 0;
   top: 0;
 }
-.user-content .user-content-nav .user-nav-list > a .delete-category {
+.user-content .user-content-nav .user-nav-list > span .delete-category {
   display: block;
   position: absolute;
   width: 30px;
@@ -914,7 +915,7 @@ h5 {
   top: 0;
   font-size: 20px;
 }
-.user-content .user-content-nav .user-nav-list > a i {
+.user-content .user-content-nav .user-nav-list > span i {
   display: block;
   width: 20px;
   height: 20px;
@@ -927,7 +928,7 @@ h5 {
   font-style: normal;
   color: #fff;
 }
-.user-content .user-content-nav .user-nav-list > a.active {
+.user-content .user-content-nav .user-nav-list > span.active {
   background: #bbb;
 }
 .user-content .user-content-list {
@@ -942,9 +943,9 @@ h5 {
   position: fixed;
   width: 100%;
   height: 100%;
-  transition: all 0.8s ease 0.5s;
-  -webkit-transition: all 0.8s ease 0.5s;
-  -moz-transition: all 0.8s ease 0.5s;
+  transition: all 0.8s ease 0.2s;
+  -webkit-transition: all 0.8s ease 0.2s;
+  -moz-transition: all 0.8s ease 0.2s;
   left: 0;
   top: -200%;
   background: rgba(0, 0, 0, 0.7);
@@ -1005,4 +1006,117 @@ h5 {
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.4);
   min-height: 100%;
+}
+.add-content > div {
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+.add-content > div label input {
+  border: 0;
+  border: 1px solid #bbb;
+  padding: 0 10px;
+  min-width: 400px;
+  height: 30px;
+  line-height: 30px;
+}
+.add-content > div .category-seletor {
+  position: relative;
+  padding-left: 70px;
+}
+.add-content > div .category-seletor .category-seleted {
+  border: 1px solid #bbb;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  background: #fff;
+  max-width: 400px;
+  cursor: pointer;
+  position: relative;
+}
+.add-content > div .category-seletor .category-seleted b {
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #888;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.add-content > div .category-seletor .category-seletor-menu {
+  max-width: 420px;
+  width: 100%;
+  position: absolute;
+  height: 0px;
+  overflow-y: scroll;
+  border: 1px solid #bbb;
+  transition: all 0.8s ease 0.2s;
+  -webkit-transition: all 0.8s ease 0.2s;
+  -moz-transition: all 0.8s ease 0.2s;
+  left: 70px;
+  top: 31px;
+  opacity: 0;
+  background: #fff;
+}
+.add-content > div .category-seletor .category-seletor-menu.active {
+  height: 250px;
+  opacity: 1;
+}
+.add-content > div .category-seletor .category-seletor-menu p {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 5%;
+  width: 90%;
+  cursor: pointer;
+}
+.add-content > div .category-seletor .category-seletor-menu p:hover {
+  background: #bbb;
+  color: #fff;
+}
+.add-content > div.add-conetnt-body > textarea {
+  min-width: 600px;
+  min-height: 300px;
+  padding: 15px;
+}
+.add-content > p {
+  content: "";
+  display: table;
+  zoom: 1;
+  width: 60%;
+  margin: 0 auto;
+  height: 30px;
+  line-height: 30px;
+}
+.add-content > p.atricle-err {
+  width: 100%;
+  padding-left: 55px;
+  box-sizing: border-box;
+}
+.add-content > p.atricle-err span {
+  background: none;
+  color: red;
+}
+.add-content > p span {
+  width: 80px;
+  text-align: center;
+  background: #04c;
+  cursor: pointer;
+  color: #fff;
+}
+.add-content > p a {
+  width: 80px;
+  text-align: center;
+  background: #04c;
+  cursor: pointer;
+  color: #fff;
+}
+.load-box {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  background: url('../img/load.gif') no-repeat center rgba(0, 0, 0, 0.5);
+  left: 0;
+  top: 0;
 }

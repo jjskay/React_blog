@@ -4,7 +4,7 @@ var {IntlMixin,FormattedMessage} = require('react-intl');
 var {concurrent} = require('contra');
 import Router,{Route, RouteHandler, Link, State, Navigation} from 'react-router';
 
-var {CategorySelector, } = require('./utilsUI');
+var {CategorySelector, LoadBox} = require('./utilsUI');
 var ReactIntl = require('react-intl');
 
 var {AuthMixin} = require('../../mixins')
@@ -37,19 +37,36 @@ var Home = React.createClass({
 	getStateFromStores: function(){
 		return {
             categoryList: this.getStore(AuthStore).isLoginCookie(),
-            categoryShow: this.getStore(ListStore).getCategoryShow(),
+            categorySelected: this.getStore(ListStore).getCategorySelected(),
+            addError: this.getStore(ListStore).getArticleError(),
+            loadStatus: this.getStore(ListStore).getLoadStatus(),
 		}
 	},
 
 	onChange: function(){
-		if(!this.state.categoryList){
+		if(!this.getStore(AuthStore).isLoginCookie()){
 			this.transitionTo('/');
+		}else{
+			this.setState(this.getStateFromStores());
 		}
-        this.setState(this.getStateFromStores());
 	},
 
     sginOut: function(){
         this.context.executeAction(AuthActions.LogOut, {})
+    },
+
+    categorySelectFunc: function(bool){
+        this.context.executeAction(ListActions.categorySelectChange, {bool:bool,name:'',id:''})
+    },
+
+    categoryGetVal: function(id, categoryName){
+        this.context.executeAction(ListActions.categorySelectChange, {bool:true,name:categoryName,id:id})
+    },
+
+    returnError: function(){
+        if(this.state.addError){
+        	return <p className="atricle-err">{this.state.addError}</p>;
+        }
     },
 
     render: function(){
@@ -58,21 +75,57 @@ var Home = React.createClass({
                 <PageHead sginOut={this.sginOut} />
                 <div className="add-content">
                      <div>
-                         <label>Title:<input ref="title" type="text" placeholder="Please enter titele!"/></label>
+                         <label>Title:<input ref="addTitle" type="text" placeholder="Please enter titele!"/></label>
                      </div>
                      <div>
+                         <span className="fl">Category:</span>
                          <CategorySelector
                          categoryList={this.state.categoryList}
-                         categoryShow={this.state.categoryShow}/>
+                         categorySelectFunc={this.categorySelectFunc}
+                         categorySelected={this.state.categorySelected}
+                         categoryGetVal={this.categoryGetVal}/>
                      </div>
-                     <div>
-                         <label>Content:</label>
-                         <textarea ref="add-content"></textarea>
+                     <div className="add-conetnt-body">
+                         <label className="fl">Content:</label>
+                         <textarea ref="addContent"></textarea>
                      </div>
+                     {this.returnError()}
+                     <p><span className="fl" onClick={this.submit}>Submit</span><Link className="fr" to="/">Back</Link></p>
                 </div>
+                <LoadBox loadStatus={this.state.loadStatus} />
             </div>
         )
 	},
+
+	submit: function(){
+		var title = React.findDOMNode(this.refs.addTitle).value.replace(/(^\s+)|(\s+$)/g, "");
+		var content = React.findDOMNode(this.refs.addContent).value.replace(/(^\s+)|(\s+$)/g, "");
+        var categoryId = this.state.categorySelected.id;
+        var t = false, c = false, s = false;
+
+        title.length > 0 ? t = true : t = false;
+        content.length > 0 ? c = true : c = false;
+        categoryId ? s = true : s = false;
+        var error;
+        if(!t){
+        	error = 'Please enter title!'
+        }else if(t && !s){
+        	error = 'Please select category!'
+        }else if(t && s && !c){
+        	error = 'Please enter content!'
+        }
+        if(t && s && c){
+        	var obj = {};
+        	obj.title = title;
+        	obj.content = content;
+        	obj.categoryId = categoryId;
+        	obj.username = this.state.categoryList.username;
+        	obj.createTime = new Date().getTime();
+        	this.context.executeAction(ListActions.AddArticle,{obj:obj});
+        }else{
+        	this.context.executeAction(ListActions.SubmitError,{error:error});
+        }
+	}
 
 })
 

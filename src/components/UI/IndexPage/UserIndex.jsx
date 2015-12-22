@@ -31,6 +31,8 @@ var UserIndex = React.createClass({
     addCategroyError: React.PropTypes.string,
     addCategoryClose: React.PropTypes.func,
     addCategoryShow: React.PropTypes.func,
+    articlesList: React.PropTypes.array,
+    getcategoryList: React.PropTypes.func,
 
 	},
 
@@ -54,7 +56,8 @@ var UserIndex = React.createClass({
 		if(this.props.user.list.length > 0 && this.props.user.list[0].num > 0){
 			views = (
                <div className="user-content-list">
-                    <ArticleList list='' articleDelete={this.articleDelete} />
+                    <ArticleList list={this.props.articlesList} articleDelete={this.articleDelete} />
+                    <p><Link to="/add">Add new article!</Link></p>
                </div>
 			)
 		}else{
@@ -105,12 +108,12 @@ var UserIndex = React.createClass({
                             deleteCategory = <span className="delete-category" onClick={this.deleteCategory.bind(this,value.categoryId)}>×</span>
                         }
                      		return (
-                     				<a href="#" className={categoryActiveClass}  key={index}  onClick={this.getcategoryList.bind(this,value.categoryId)}>
+                     				<span className={categoryActiveClass}  key={index}  onClick={this.getcategoryList.bind(this,value.categoryId)}>
                      					<FontIcon  iconClass='icon-search' iconColor="blank" />
                      					{value.categoryName}
                      					<i>{value.num}</i>
                               {deleteCategory}
-                     				</a>
+                     				</span>
                      		)
                      	})
                      }
@@ -124,7 +127,7 @@ var UserIndex = React.createClass({
 	},
 
   getcategoryList: function(id){
-    console.log(id)
+        this.props.getcategoryList(id);
   },
 
   deleteCategory: function(categoryId, categoryNum){

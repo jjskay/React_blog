@@ -13,6 +13,8 @@ var AuthStore = createStore({
         'LOGIN_FAIL': 'loginFail',
         'LOG_OUT': 'logOut',
         'CATEGORY_INDEX': 'ctegoryIndex',
+        'ATRICLE_LIST': 'acricleList',
+        'CATEGORY_INDEX_CHANGE': 'categoryIndexChange'
 	},
 
 	initialize: function(){
@@ -24,10 +26,16 @@ var AuthStore = createStore({
         this.loginError = '';
         this.locaReload = false;
         this.categoeyIndex = 0;
+        this.acricleListView = null;
 	},
 
 	loginStart: function(){
         this.loginStatus = true;
+        this.emitChange();
+	},
+
+	categoryIndexChange: function(id){
+        this.categoeyIndex = id.id;
         this.emitChange();
 	},
 
@@ -36,6 +44,11 @@ var AuthStore = createStore({
 			this.loginStatusCookie = userinfo;
 			this.emitChange();
 		}
+	},
+
+	acricleList: function(list){
+        this.acricleListView = list.list;
+        this.emitChange();
 	},
 
 	ctegoryIndex: function(index){
@@ -108,8 +121,11 @@ var AuthStore = createStore({
 	},
 
     isLoginCookie: function(){
-    	 console.log(this.loginStatusCookie)
          return this.loginStatusCookie;
+    },
+
+    getAcricleList: function(){
+         return this.acricleListView;
     },
 
 	dehydrate: function(){
@@ -121,6 +137,7 @@ var AuthStore = createStore({
             loginStatus: this.loginStatus,
             loginError: this.loginError,
             locaReload: this.locaReload,
+            acricleListView: this.acricleListView,
 		}
 	},
 
@@ -132,6 +149,7 @@ var AuthStore = createStore({
 	    this.loginStatus = state.loginStatus;
 	    this.loginError = state.loginError;
 	    this.locaReload = state.locaReload;
+	    this.acricleListView = state.acricleListView;
 	}
 })
 

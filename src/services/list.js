@@ -5,6 +5,27 @@ import serverConfig from '../configs/server';
 
 var ListService = {
     name: 'list',
+    read: function (req, resource, params, config, callback) {
+        var user = req.session.user;
+        if (user == null) {
+            callback(null, null);
+            return;
+        }
+        var url = serverConfig.mongo.cash.url;
+        MongoClient.connect(url, function(err, db){
+             var collection = db.collection('collection_list');
+             collection.find({username:user[0].username}).toArray((err, res) => {
+                if(err){
+                  db.close();
+                  callback(err, null)
+                  return;
+                }
+                db.close();
+                callback(err, res);
+             })
+         })
+    },
+
     create: function(req, resource, params, body, config, callback){
        var url = serverConfig.mongo.cash.url;
        MongoClient.connect(url, function(err, db){
@@ -20,6 +41,7 @@ var ListService = {
            })
        })
     },
+
     update: function(req, resource, params, body, config, callback){
        var url = serverConfig.mongo.cash.url;
        MongoClient.connect(url, function(err, db){

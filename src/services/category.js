@@ -8,13 +8,18 @@ var CategoryService = {
     update: function(req, resource, params, body, config, callback){
        var url = serverConfig.mongo.cash.url;
        var username = req.session.user[0].username;
-       var list = req.session.user[0].list;
-       var obj = {
-       	   categoryName:body.name,
-       	   categoryId:body.id,
-       	   num:0
+       var list
+       if(!body.up){
+           list = req.session.user[0].list;
+           var obj = {
+               categoryName:body.name,
+               categoryId:body.id,
+               num:0
+           }
+           list.push(obj);
+       }else{
+           list = body.list;
        }
-       list.push(obj);
        MongoClient.connect(url, function(err, db){
            var collection = db.collection('collection_user');
            collection.updateOne({username:username},{$set:{list:list}},function(err, res){

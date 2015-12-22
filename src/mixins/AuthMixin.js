@@ -8,7 +8,6 @@ var AuthMixin = {
         willTransitionTo: function (transition) {
             var isLogin = transition.context
                 .getActionContext().getStore(AuthStore).isLoginCookie();
-                console.log(isLogin)
             if (!isLogin) {
                 transition.redirect('/');
             }

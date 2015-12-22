@@ -26,9 +26,14 @@ var Home = React.createClass({
 		storeListeners: [AuthStore, ListStore],
         fetchData: function (context, params, query, done) {
             concurrent([
-                context.executeAction.bind(context, AuthActions.LoadSession, {})
-            ], done)
+                context.executeAction.bind(context, AuthActions.LoadSession, {}),
 
+            ],function(){
+
+                concurrent([
+                   context.executeAction.bind(context, ListActions.GetAtricleList , {})
+                   ],done)
+            })
         }
 	},
 
@@ -45,6 +50,7 @@ var Home = React.createClass({
             categoryIndex: this.getStore(AuthStore).getCategoryIndex(),
             categoryVisiable: this.getStore(ListStore).getCategoryVisiable(),
             addCategroyError: this.getStore(ListStore).getAddCategroyError(),
+            articlesList: this.getStore(ListStore).getArticles()
 		}
 	},
 
@@ -79,6 +85,11 @@ var Home = React.createClass({
     deleteCategory: function(categoryId, categoryNum){
         this.context.executeAction(ListActions.DeleteCategory, {id:categoryId});
     },
+
+    getcategoryList: function(id){
+        this.context.executeAction(AuthActions.CategoryIndexChange, {id:id});
+    },
+
     render: function(){
 		var ele;
         var head;
@@ -95,7 +106,9 @@ var Home = React.createClass({
                   categoryVisiable={this.state.categoryVisiable}
                   addCategroyError={this.state.addCategroyError}
                   addCategoryClose={this.addCategoryShow}
-                  addCategoryShow={this.addCategoryShow}/>;
+                  addCategoryShow={this.addCategoryShow}
+                  articlesList={this.state.articlesList}
+                  getcategoryList={this.getcategoryList}/>;
             head = <PageHead sginOut={this.sginOut} />;
         }else{
             ele = <PulicIndex loginStatusFunc={this.onchangeLoginStatus} />;
