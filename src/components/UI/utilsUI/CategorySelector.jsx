@@ -22,7 +22,7 @@ let CategorySelector = React.createClass({
                      {
                         this.props.categoryList.list.map((val,index) => {
                                 if(val.categoryId !== 0){
-                                    return <p onClick={this.seletedChange.bind(this,val.categoryId,val.categoryName)}>{val.categoryName}</p>
+                                    return <p key={index} onClick={this.seletedChange.bind(this,val.categoryId,val.categoryName)}>{val.categoryName}</p>
                                 }
                         })
                      }

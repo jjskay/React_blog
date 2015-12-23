@@ -56,7 +56,7 @@ var UserIndex = React.createClass({
 		if(this.props.user.list.length > 0 && this.props.user.list[0].num > 0){
 			views = (
                <div className="user-content-list">
-                    <ArticleList list={this.props.articlesList} articleDelete={this.articleDelete} />
+                    <ArticleList list={this.props.articlesList} articleDelete={this.props.articleDelete} />
                     <p><Link to="/add">Add new article!</Link></p>
                </div>
 			)
@@ -71,9 +71,9 @@ var UserIndex = React.createClass({
 		return views;
 	},
 
-	articleDelete: function(id){
-        this.props.articleDelete(id);
-	},
+	// articleDelete: function(id,categoryId){
+ //        this.props.articleDelete(id,categoryId);
+	// },
 
 	userInfoRender: function(){
 		var menuClass = classSet({

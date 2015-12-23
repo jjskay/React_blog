@@ -9,8 +9,8 @@ let ArticleList = React.createClass({
        articleDelete: React.PropTypes.func,
     },
 
-    articleDelete: function(id){
-       this.props.articleDelete(id);
+    articleDelete: function(id,categoryId,createTime){
+       this.props.articleDelete(id,categoryId,createTime);
     },
 
     render() {
@@ -37,8 +37,8 @@ let ArticleList = React.createClass({
                                 <b className="fr">category:{val.categoryName}</b>
                                 <span>{cTime}</span>
                                 <p className="article-manage">
-                                    <span onClick={this.articleDelete.bind(this,val.id)}><FontIcon iconClass="icon-delete" iconColor="black" />Delete</span>
-                                    <Link to='/'><FontIcon iconClass="icon-edit" iconColor="black" />Edit</Link>
+                                    <span onClick={this.articleDelete.bind(this,val._id,val.categoryId,val.createTime)}><FontIcon iconClass="icon-delete" iconColor="black" />Delete</span>
+                                    <Link to='edit' params={{createTime:val.createTime}}><FontIcon iconClass="icon-edit" iconColor="black" />Edit</Link>
                                 </p>
                             </div>
                     	)

@@ -9,14 +9,16 @@ var ReactIntl = require('react-intl');
 
 var {AuthMixin} = require('../../mixins')
 
+var _ = require('lodash');
 var AuthStore = require('../../stores/AuthStore');
 var AuthActions = require('../../actions/AuthActions');
 var ListActions = require('../../actions/ListActions');
 var ListStore = require('../../stores/ListStore');
 
 
-var {UserIndex, PulicIndex} = require('./IndexPage');
+var {UserIndex, PulicIndex, } = require('./IndexPage');
 var PageHead = require('./PageHead')
+var {ConfirmBox, } = require('./utilsUI');
 
 var Home = React.createClass({
 
@@ -29,7 +31,6 @@ var Home = React.createClass({
                 context.executeAction.bind(context, AuthActions.LoadSession, {}),
 
             ],function(){
-
                 concurrent([
                    context.executeAction.bind(context, ListActions.GetAtricleList , {})
                    ],done)
@@ -45,7 +46,7 @@ var Home = React.createClass({
 		return {
 			user: this.getStore(AuthStore).isLoginCookie(),
             menuStatus: false,
-            messageStatus: false,
+            messageStatus: this.getStore(ListStore).getConfirmBoxStatus(),
             addModule: false,
             categoryIndex: this.getStore(AuthStore).getCategoryIndex(),
             categoryVisiable: this.getStore(ListStore).getCategoryVisiable(),
@@ -59,19 +60,22 @@ var Home = React.createClass({
 	},
 
     onchangeLoginStatus: function(){
-        this.context.executeAction.bind(context, AuthActions.LoadSession, {})
+        this.context.executeAction(AuthActions.LoadSession, {})
     },
 
-    articleDelete: function(id){
-        this.context.executeAction.bind(context, ListActions.detele, {id:id})
+    articleDelete: function(id,categoryId,createTime){
+        this.deleteId = id;
+        this.categoryId = categoryId;
+        this.createTime = createTime;
+        this.context.executeAction(ListActions.ConfirmBoxShow, {bool:true})
     },
 
     onclickBoxSure: function(){
-
+        this.context.executeAction(ListActions.DeteleArticle, {id:this.deleteId,categoryId:this.categoryId,createTime:this.createTime});
     },
 
     onclickBoxCancel: function(){
-
+        this.context.executeAction(ListActions.ConfirmBoxShow, {bool:false})
     },
 
     addModuleShow: function(){
@@ -88,6 +92,23 @@ var Home = React.createClass({
 
     getcategoryList: function(id){
         this.context.executeAction(AuthActions.CategoryIndexChange, {id:id});
+    },
+
+    returnArticlesList: function(){
+        var id = this.state.categoryIndex;
+        var arr = this.state.articlesList;
+        var returnArr;
+        if(id == 0){
+            returnArr = arr;
+        }else{
+            returnArr = [];
+            arr && arr.length !== 0 && arr.map((val,index) => {
+                if(val.categoryId == id){
+                    returnArr.push(val);
+                }
+            })
+        }
+        return returnArr;
     },
 
     render: function(){
@@ -107,7 +128,7 @@ var Home = React.createClass({
                   addCategroyError={this.state.addCategroyError}
                   addCategoryClose={this.addCategoryShow}
                   addCategoryShow={this.addCategoryShow}
-                  articlesList={this.state.articlesList}
+                  articlesList={this.returnArticlesList()}
                   getcategoryList={this.getcategoryList}/>;
             head = <PageHead sginOut={this.sginOut} />;
         }else{
@@ -117,7 +138,7 @@ var Home = React.createClass({
             <div id="layout">
                 {head}
                 {ele}
-                <confirmBox messageStatus={this.state.messageStatus} onclickBoxSure={this.onclickBoxSure} onclickBoxCancel={this.onclickBoxCancel}  />
+                <ConfirmBox messageStatus={this.state.messageStatus} onclickBoxSure={this.onclickBoxSure} onclickBoxCancel={this.onclickBoxCancel}  />
             </div>
         )
 	},

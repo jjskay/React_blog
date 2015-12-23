@@ -44,6 +44,11 @@ var ListService = {
 
     update: function(req, resource, params, body, config, callback){
        var url = serverConfig.mongo.cash.url;
+       var user = req.session.user;
+        if (user == null) {
+            callback(null, null);
+            return;
+        }
        MongoClient.connect(url, function(err, db){
            var collection = db.collection('collection_user');
            collection.updateOne({_id:body.id},
@@ -58,6 +63,30 @@ var ListService = {
                callback(err, res);
            })
        })
+    },
+
+    delete: function (req, resource, params, config, callback) {
+      var url = serverConfig.mongo.cash.url;
+       var user = req.session.user;
+        if (user == null) {
+            callback(null, null);
+            return;
+        }
+        var query = {createTime:params.createTime};
+        MongoClient.connect(url, function(err, db){
+           var collection = db.collection('collection_list');
+           collection.deleteOne(query,
+              function(err, res){
+               if(err){
+                  db.close();
+                  callback(err,null);
+                  return;
+               }
+               db.close();
+               callback(err, res);
+           })
+       })
+
     }
 }
 

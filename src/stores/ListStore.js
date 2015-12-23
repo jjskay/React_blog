@@ -12,7 +12,9 @@ var ListStore = createStore({
 		'LOAD_END': 'loadEnd',
 		'ADD_ATRICLE_ERR': 'addAtricle_err',
 		'ADD_ARTICLE_SUCC': 'addAtricleSucc',
-		'STORE_ARTICLES':'storeArticles'
+		'STORE_ARTICLES':'storeArticles',
+		'CONFIRM_SHOW': 'confirmShow',
+		'GET_ATRICLE_ONE': 'settAtricleOne',
 	},
 
 	initialize: function(){
@@ -26,11 +28,29 @@ var ListStore = createStore({
         };
         this.articleError = '';
         this.loadStatus = false;
+        this.confirmBoxStatus = false;
+        this.atricleOne = {
+        	title:'',
+        	content:'',
+        	categoryId:0
+        };
 	},
 
 	addAtricle_err: function(err){
 		this.articleError = err;
 		this.emitChange();
+	},
+
+	settAtricleOne: function(obj){
+        this.atricleOne = obj.obj;
+        this.categorySelected.id = obj.obj.categoryId;
+        this.categorySelected.name = obj.obj.categoryName;
+        this.emitChange();
+    },
+
+	confirmShow: function(val){
+        this.confirmBoxStatus = val.bool;
+        this.emitChange();
 	},
 
 	addAtricleSucc: function(){
@@ -94,8 +114,16 @@ var ListStore = createStore({
         return this.loadStatus;
 	},
 
+	getConfirmBoxStatus: function(){
+		return this.confirmBoxStatus;
+	},
+
+	getAtricleOne: function(){
+        return this.atricleOne;
+	},
+
 	storeArticles:function(list) {
-		this.articlesList=list.list;
+		this.articlesList = list.list;
 		this.emitChange();
 	},
 
@@ -110,7 +138,9 @@ var ListStore = createStore({
             addCategroyError: this.addCategroyError,
             categorySelected: this.categorySelected,
             articleError: this.articleError,
-            articlesList:this.articlesList
+            articlesList:this.articlesList,
+            confirmBoxStatus: this.confirmBoxStatus,
+            atricleOne: this.atricleOne,
 		}
 	},
 
@@ -122,6 +152,8 @@ var ListStore = createStore({
         this.categorySelected = state.categorySelected;
         this.articleError = state.articleError;
         this.articlesList=state.articlesList;
+        this.confirmBoxStatus = state.confirmBoxStatus;
+        this.atricleOne = state.atricleOne;
 	}
 })
 
