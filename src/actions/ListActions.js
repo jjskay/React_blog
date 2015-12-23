@@ -14,7 +14,8 @@ ListActions.AddCategoryError = function(context, payload, done){
 }
 
 ListActions.AddCategoryApi = function(context, payload, done){
-    var categoryList = context.getStore('AuthStore').isLoginCookie.list;
+    var userinfo = context.getStore('AuthStore').isLoginCookie();
+    var categoryList = userinfo && userinfo.list;
     if(!categoryList){
     	context.service.read('LoadSession', payload, {}, function(err, user){
 	         if(user){
@@ -29,13 +30,16 @@ ListActions.AddCategoryApi = function(context, payload, done){
                     		throw err;
                     	}
                         if(res){
-                        	window.location.reload();
+                            user[0].list.push({categoryName:payload.val,categoryId:categoryList.length,num:0});
+                            context.dispatch('LOAD_SESSION', {user:user[0]});
+                            context.dispatch('ADD_CATEGORY_SHOW',{val:false});
+                        	context.getRouter().transitionTo('/');
                         }
                         done();
                     })
 			    }
 	         }else{
-	         	context.dispatch('LOG_OUT');
+	         	context.dispatch('LOG_OUT',{});
 	         	done();
 	         }
 		})
@@ -50,7 +54,10 @@ ListActions.AddCategoryApi = function(context, payload, done){
                     throw err;
                  }
                  if(res){
-                    window.location.reload();
+                    userinfo.list.push({categoryName:payload.val,categoryId:categoryList.length,num:0});
+                    context.dispatch('LOAD_SESSION', userinfo);
+                    context.dispatch('ADD_CATEGORY_SHOW',{val:false});
+                    context.getRouter().transitionTo('/');
                  }
                  done();
             })
@@ -59,7 +66,8 @@ ListActions.AddCategoryApi = function(context, payload, done){
 }
 
 ListActions.DeleteCategory = function(context, payload, done){
-	var categoryList = context.getStore('AuthStore').isLoginCookie.list;
+	var userinfo = context.getStore('AuthStore').isLoginCookie();
+    var categoryList = userinfo && userinfo.list;
     if(!categoryList){
     	context.service.read('LoadSession', payload, {}, function(err, user){
 	         if(user){
@@ -68,7 +76,13 @@ ListActions.DeleteCategory = function(context, payload, done){
 	                    throw err;
 	                 }
 	                 if(res){
-	                    window.location.reload();
+	                    user[0].list.push({categoryName:payload.val,categoryId:categoryList.length,num:0});
+                        _.remove(user[0].list,function(val){
+                            return val.categoryId == payload.id
+                        })
+                        context.dispatch('LOAD_SESSION', user[0]);
+                        context.dispatch('ADD_CATEGORY_SHOW',{val:false});
+                        context.getRouter().transitionTo('/');
 	                 }
 	                 done();
 	            })
@@ -78,21 +92,21 @@ ListActions.DeleteCategory = function(context, payload, done){
 	         }
 		})
     }else{
-    	if(_.pluck(_.filter(categoryList,{'categoryName':payload.val}),'categoryName').length !== 0){
-	    	context.dispatch('ADD_CATEGORY_ERROR',{val:'Category name already exists, can not be repeated!'});
-	    	done();
-	    }else{
             context.dispatch('ADD_CATEGORY_ERROR',{val:''});
             context.service.delete('category', payload, {name:payload.val,id:payload.id}, function(err, res){
                 if(err){
                     throw err;
                  }
                  if(res){
-                    window.location.reload();
+                    _.remove(userinfo.list,function(val){
+                        return val.categoryId == payload.id
+                    })
+                    context.dispatch('LOAD_SESSION', userinfo);
+                    context.dispatch('ADD_CATEGORY_SHOW',{val:false});
+                    context.getRouter().transitionTo('/');
                  }
                  done();
             })
-	    }
     }
 
 }
@@ -163,14 +177,63 @@ ListActions.EditArticle = function(context, payload, done){
                 throw err;
                }
                if(res){
-               	    console.log(res)
-	                context.dispatch('ADD_ARTICLE_SUCC',{});
-	                context.service.read('LoadSession', payload, {up:1}, function(err, user){
-						    var user = user ? user[0] : null;
-						    context.dispatch('LOAD_SESSION', user);
-	                     context.getRouter().transitionTo('/');
-	                     done();
-					})
+                    var articleList = context.sessionStorage.get('list');
+                    var atricleOne = context.getStore('ListStore').getAtricleOne();
+                    var oldCategoryId = context.getStore('ListStore').getAtricleOne().categoryId;
+                    var index_ = _.findIndex(articleList,function(val){
+                         return val.id == atricleOne.id
+                     });
+                    articleList[index_] = payload.obj;
+                    context.dispatch('STORE_ARTICLES',{list:articleList})
+	                context.sessionStorage.set('list',articleList);
+                    if(oldCategoryId !== payload.obj.categoryId){
+                        console.log(oldCategoryId, payload.obj.categoryId)
+                        var userinfo = context.getStore(AuthStore).isLoginCookie();
+                        var oldCategoryIdIndex = _.findIndex(userinfo.list,function(val){
+                             return val.categoryId == oldCategoryId;
+                        });
+                        userinfo.list[oldCategoryIdIndex].num > 0 ? userinfo.list[oldCategoryIdIndex].num-- : userinfo.list[oldCategoryIdIndex].num = 0;
+                        var newCategoryIdIndex= _.findIndex(userinfo.list,function(val){
+                             return val.categoryId == payload.obj.categoryId;
+                        });
+                        userinfo.list[newCategoryIdIndex].num++;
+                        var categoryNameIndex = _.findIndex(articleList,function(val){
+                             return val.id == payload.obj.id;
+                        });
+
+                        articleList[categoryNameIndex].categoryId = payload.obj.categoryId;
+                        articleList[categoryNameIndex].categoryName = userinfo.list[newCategoryIdIndex].categoryName;
+                        context.dispatch('STORE_ARTICLES',{list:articleList})
+                        context.sessionStorage.set('list',articleList);
+                        context.service.update('category', payload, {up:1,list:userinfo.list}, function(err, res){
+                                if(err){
+                                    throw err;
+                                }
+                                if(res){
+                                    context.dispatch('ADD_ARTICLE_SUCC',{});
+                                    context.service.read('LoadSession', payload, {up:1}, function(err, user){
+                                         var user = user ? user[0] : null;
+                                         context.dispatch('LOAD_SESSION', user);
+                                         context.service.read('list',payload, {}, function(err, res){
+                                                 if(err){
+                                                     return err;
+                                                 }
+                                                 context.sessionStorage.set('list',res);
+                                                 context.dispatch('STORE_ARTICLES',{list:res})
+                                                 context.getRouter().transitionTo('/');
+                                                 done();
+                                         })
+                                    })
+                                }
+                         })
+                    }else{
+    	                context.service.read('LoadSession', payload, {up:1}, function(err, user){
+    						 var user = user ? user[0] : null;
+    						 context.dispatch('LOAD_SESSION', user);
+    	                     context.getRouter().transitionTo('/');
+    	                     done();
+    					})
+                    }
                }else{
                	    done();
                }
@@ -192,11 +255,11 @@ ListActions.DeteleArticle = function(context, payload, done){
          if(res){
              context.executeAction(ListActions.ConfirmBoxShow, {bool:false});
              var userList = context.getStore(AuthStore).isLoginCookie().list;
-			 userList[0].num--;
+			 userList[0].num > 0 ? userList[0].num-- : userList[0].num = 0;
              var index = _.findIndex(userList,function(val){
             	 return val.categoryId == categoryId
              })
-             userList[index].num--;
+             userList[index].num > 0 ? userList[index].num-- : userList[index].num = 0;
              context.service.update('category', payload, {up:1,list:userList}, function(err, res){
                     if(err){
                     	throw err;
@@ -227,6 +290,7 @@ ListActions.DeteleArticle = function(context, payload, done){
 ListActions.GetAtricleList = function(context, payload, done){
     if(context.sessionStorage.get('list')){
     	var list = context.sessionStorage.get('list');
+        console.log(list)
 		context.dispatch('STORE_ARTICLES',{list:list})
 		done();
     }else{
@@ -243,6 +307,7 @@ ListActions.GetAtricleList = function(context, payload, done){
 }
 
 ListActions.GetAtricleOnce = function(context, payload, done){
+     var createTime = payload.createTime;
 	 var list = context.sessionStorage.get('list');
      var index_ = _.findIndex(list,function(val){
             	 return val.createTime == payload.createTime
@@ -251,13 +316,14 @@ ListActions.GetAtricleOnce = function(context, payload, done){
      	  context.dispatch('GET_ATRICLE_ONE', {obj: list[index_]});
      	  done();
      }else{
-          context.service.read('list',payload, {createTime:payload.createTime}, function(err, res){
+          context.service.read('list',payload, {createTime:createTime}, function(err, res){
 		         if(err){
 		         	 return err;
 		         }
 		         var index = _.findIndex(res,function(val){
 	            	 return val.createTime == payload.createTime
 	             })
+                 context.dispatch('STORE_ARTICLES',{list:res})
 		         context.sessionStorage.set('list',res);
 				 context.dispatch('GET_ATRICLE_ONE',{obj:res[index]})
 				 done();

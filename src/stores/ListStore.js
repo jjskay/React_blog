@@ -32,7 +32,7 @@ var ListStore = createStore({
         this.atricleOne = {
         	title:'',
         	content:'',
-        	categoryId:0
+        	categoryId: 0
         };
 	},
 

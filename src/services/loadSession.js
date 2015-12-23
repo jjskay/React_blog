@@ -46,7 +46,7 @@ var LoadSession = {
                           content: body.obj.content,
                         }
            collection.updateOne({categoryId:query.categoryId},
-            {$set:{createTime: body.obj.createTime}},
+            {$set:query},
             function(err, res){
                if(err){
                   db.close();

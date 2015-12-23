@@ -8,7 +8,7 @@ var CategoryService = {
     update: function(req, resource, params, body, config, callback){
        var url = serverConfig.mongo.cash.url;
        var username = req.session.user[0].username;
-       var list
+       var list;
        if(!body.up){
            list = req.session.user[0].list;
            var obj = {
@@ -28,6 +28,7 @@ var CategoryService = {
                   callback(err,null);
                   return;
                }
+               req.session.user[0].list = list;
                db.close();
                callback(err, res);
            })
