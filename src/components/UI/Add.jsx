@@ -17,7 +17,7 @@ var ListStore = require('../../stores/ListStore');
 var PageHead = require('./PageHead');
 var AuthMixins = require('../../utils/AuthMixins');
 
-var Home = React.createClass({
+var Add = React.createClass({
 
 	mixins: [State, Navigation, FluxibleMixin, IntlMixin, AuthMixin],
 
@@ -25,7 +25,8 @@ var Home = React.createClass({
 		storeListeners: [AuthStore, ListStore],
         fetchData: function (context, params, query, done) {
             concurrent([
-                context.executeAction.bind(context, AuthActions.LoadSession, {})
+                context.executeAction.bind(context, AuthActions.LoadSession, {}),
+                context.executeAction.bind(context, ListActions.AtricleInit, {})
             ], done)
         }
 	},
@@ -40,6 +41,7 @@ var Home = React.createClass({
             categorySelected: this.getStore(ListStore).getCategorySelected(),
             addError: this.getStore(ListStore).getArticleError(),
             loadStatus: this.getStore(ListStore).getLoadStatus(),
+            articleVal: this.getStore(ListStore).getAtricleOne(),
 		}
 	},
 
@@ -69,13 +71,23 @@ var Home = React.createClass({
         }
     },
 
+    titleOchange: function(){
+        var title = React.findDOMNode(this.refs.addTitle).value.replace(/(^\s+)|(\s+$)/g, "");
+        this.context.executeAction(ListActions.atricleTitleChange, {title:title});
+    },
+
+    contentChange: function(){
+         var content = React.findDOMNode(this.refs.addContent).value.replace(/(^\s+)|(\s+$)/g, "");
+         this.context.executeAction(ListActions.atricleContentChange, {content:content});
+    },
+
     render: function(){
         return (
             <div id="layout">
                 <PageHead sginOut={this.sginOut} />
                 <div className="add-content">
                      <div>
-                         <label>Title:<input ref="addTitle" type="text" placeholder="Please enter titele!"/></label>
+                         <label>Title:<input ref="addTitle" type="text" onChange={this.titleOchange} value={this.state.articleVal.title} placeholder="Please enter titele!"/></label>
                      </div>
                      <div>
                          <span className="fl">Category:</span>
@@ -87,7 +99,7 @@ var Home = React.createClass({
                      </div>
                      <div className="add-conetnt-body">
                          <label className="fl">Content:</label>
-                         <textarea ref="addContent"></textarea>
+                         <textarea ref="addContent" onChange={this.contentChange} value={this.state.articleVal.content}></textarea>
                      </div>
                      {this.returnError()}
                      <p><span className="fl" onClick={this.submit}>Submit</span><Link className="fr" to="/">Back</Link></p>
@@ -131,7 +143,7 @@ var Home = React.createClass({
 })
 
 
-module.exports = Home;
+module.exports = Add;
 
 
 

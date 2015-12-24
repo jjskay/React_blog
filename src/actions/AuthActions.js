@@ -1,7 +1,11 @@
 var AuthActions = {};
 var AuthStore = require('../stores/AuthStore');
+var ListStore = require('../stores/ListStore');
 
 AuthActions.LoadSession =  function(context, payload, done){
+	if(!context.sessionStorage.get('list')){
+		context.sessionStorage.set('list',[]);
+	}
 	context.service.read('LoadSession', payload, {}, function(err, user){
          var user = user ? user[0] : null;
          context.dispatch('LOAD_SESSION', user);
@@ -38,9 +42,10 @@ AuthActions.Reg = function(context, payload, done){
 AuthActions.Login = function(context, payload, done){
     context.dispatch('LOGIN_START',{});
     context.getStore(AuthStore).initialize();
+    context.getStore(ListStore).initialize();
     context.service.read('user', payload, {obj:payload.obj}, function(err, user){
        if(user.length > 0){
-       	   context.dispatch('LOGIN_SUCC',{user:user[0]});
+       	   context.dispatch('LOGIN_SUCC',{});
        	   context.dispatch('LOAD_SESSION', user[0]);
        }else{
        	   context.dispatch('LOGIN_FAIL',{});
@@ -51,6 +56,7 @@ AuthActions.Login = function(context, payload, done){
 
 AuthActions.LogOut = function(context, payload, done){
 	context.service.delete('user', payload, function(err){
+	   context.sessionStorage.delete('list');
        context.dispatch('LOG_OUT');
        done();
 	})

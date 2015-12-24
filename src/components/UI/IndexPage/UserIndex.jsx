@@ -86,10 +86,10 @@ var UserIndex = React.createClass({
                      <span><i className="iconfont icon-user"></i>{this.props.user.username}</span>
                      <b onClick={this.addModuleShow}><i></i></b>
                      <div className={menuClass} onClick={this.addCategoryShow}>
-                         <a href="#">
+                         <span className="show">
                               <FontIcon iconClass="icon-add" iconColor="blank" />
                                  Create Category
-                         </a>
+                         </span>
                      </div>
                      <AddCategory
                       addCategory={this.props.addCategory}

@@ -33,7 +33,7 @@ let ArticleList = React.createClass({
                         cTime+= new Date(val.createTime).getSeconds() >9 ? new Date(val.createTime).getSeconds() : '0' + new Date(val.createTime).getSeconds();
                     	return (
                             <div key={index} className="articles">
-                                <Link to='/'>{val.title}</Link>
+                                <Link to='viewArticle' params={{createTime:val.createTime}}>{val.title}</Link>
                                 <b className="fr">category:{val.categoryName}</b>
                                 <span>{cTime}</span>
                                 <p className="article-manage">

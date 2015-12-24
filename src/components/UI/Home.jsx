@@ -18,7 +18,7 @@ var ListStore = require('../../stores/ListStore');
 
 var {UserIndex, PulicIndex, } = require('./IndexPage');
 var PageHead = require('./PageHead')
-var {ConfirmBox, } = require('./utilsUI');
+var {ConfirmBox, LoadBox} = require('./utilsUI');
 
 var Home = React.createClass({
 
@@ -51,7 +51,8 @@ var Home = React.createClass({
             categoryIndex: this.getStore(AuthStore).getCategoryIndex(),
             categoryVisiable: this.getStore(ListStore).getCategoryVisiable(),
             addCategroyError: this.getStore(ListStore).getAddCategroyError(),
-            articlesList: this.getStore(ListStore).getArticles()
+            articlesList: this.getStore(ListStore).getArticles(),
+            loadStatus: this.getStore(ListStore).getLoadStatus(),
 		}
 	},
 
@@ -108,6 +109,10 @@ var Home = React.createClass({
                 }
             })
         }
+        typeof window !== 'undefined' && window.sessionStorage
+        && this.state.articlesList ?
+        window.sessionStorage.list =
+        JSON.stringify(this.state.articlesList) : '';
         return returnArr;
     },
 
@@ -139,6 +144,7 @@ var Home = React.createClass({
                 {head}
                 {ele}
                 <ConfirmBox messageStatus={this.state.messageStatus} onclickBoxSure={this.onclickBoxSure} onclickBoxCancel={this.onclickBoxCancel}  />
+                <LoadBox loadStatus={this.state.loadStatus} />
             </div>
         )
 	},

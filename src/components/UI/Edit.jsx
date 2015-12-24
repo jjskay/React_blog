@@ -74,13 +74,23 @@ var Edit = React.createClass({
         }
     },
 
+    titleOchange: function(){
+        var title = React.findDOMNode(this.refs.addTitle).value.replace(/(^\s+)|(\s+$)/g, "");
+        this.context.executeAction(ListActions.atricleTitleChange, {title:title});
+    },
+
+    contentChange: function(){
+         var content = React.findDOMNode(this.refs.addContent).value.replace(/(^\s+)|(\s+$)/g, "");
+         this.context.executeAction(ListActions.atricleContentChange, {content:content});
+    },
+
     render: function(){
         return (
             <div id="layout">
                 <PageHead sginOut={this.sginOut} />
                 <div className="add-content">
                      <div>
-                         <label>Title:<input ref="addTitle" defaultValue={this.state.articleVal.title} type="text" placeholder="Please enter titele!"/></label>
+                         <label>Title:<input ref="addTitle" onChange={this.titleOchange} value={this.state.articleVal.title} type="text" placeholder="Please enter titele!"/></label>
                      </div>
                      <div>
                          <span className="fl">Category:</span>
@@ -92,7 +102,7 @@ var Edit = React.createClass({
                      </div>
                      <div className="add-conetnt-body">
                          <label className="fl">Content:</label>
-                         <textarea ref="addContent" defaultValue={this.state.articleVal.content}></textarea>
+                         <textarea ref="addContent" onChange={this.contentChange} value={this.state.articleVal.content}></textarea>
                      </div>
                      {this.returnError()}
                      <p><span className="fl" onClick={this.submit}>Submit</span><Link className="fr" to="/">Back</Link></p>
@@ -126,6 +136,7 @@ var Edit = React.createClass({
         	obj.categoryId = categoryId;
         	obj.username = this.state.categoryList.username;
         	obj.createTime = new Date().getTime();
+            obj.oldCreateTime = this.state.articleVal.createTime;
             obj.categoryName = this.state.categorySelected.name;
             obj.id = this.state.articleVal._id;
         	this.context.executeAction(ListActions.EditArticle,{obj:obj});

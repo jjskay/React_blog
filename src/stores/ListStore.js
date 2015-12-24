@@ -15,6 +15,10 @@ var ListStore = createStore({
 		'STORE_ARTICLES':'storeArticles',
 		'CONFIRM_SHOW': 'confirmShow',
 		'GET_ATRICLE_ONE': 'settAtricleOne',
+		'GET_ATRICLE_TAB_DATE': 'getAtricleTabId',
+		'ATRICLE_ONCHANGE_TITLE': 'actricleOnchangeTitle',
+		'ATRICLE_ONCHANGE_CONTENT': 'actricleChangeContent',
+		'ADD_ATRICLE_INIT': 'addAtricleInit',
 	},
 
 	initialize: function(){
@@ -34,10 +38,38 @@ var ListStore = createStore({
         	content:'',
         	categoryId: 0
         };
+        this.articleTabobj = {
+        	prev:null,
+        	next:null
+        }
 	},
 
 	addAtricle_err: function(err){
 		this.articleError = err;
+		this.emitChange();
+	},
+
+	addAtricleInit: function(){
+        this.atricleOne = {
+        	title:'',
+        	content:'',
+        	categoryId: null
+        };
+        this.emitChange();
+	},
+
+	actricleOnchangeTitle: function(title){
+        this.atricleOne.title = title;
+        this.emitChange();
+	},
+
+	actricleChangeContent: function(content){
+        this.atricleOne.content = content;
+        this.emitChange();
+	},
+
+	getAtricleTabId: function(val){
+		this.articleTabobj = val.val;
 		this.emitChange();
 	},
 
@@ -131,6 +163,10 @@ var ListStore = createStore({
 		return this.articlesList;
 	},
 
+	getArticleTabobj: function(){
+         return this.articleTabobj;
+	},
+
 	dehydrate: function(){
 		return {
             list: this.list,
@@ -141,6 +177,7 @@ var ListStore = createStore({
             articlesList:this.articlesList,
             confirmBoxStatus: this.confirmBoxStatus,
             atricleOne: this.atricleOne,
+            articleTabobj: this.articleTabobj,
 		}
 	},
 
@@ -154,6 +191,7 @@ var ListStore = createStore({
         this.articlesList=state.articlesList;
         this.confirmBoxStatus = state.confirmBoxStatus;
         this.atricleOne = state.atricleOne;
+        this.articleTabobj = state.articleTabobj;
 	}
 })
 

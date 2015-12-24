@@ -91,9 +91,9 @@ input {
   display: block;
 }
 .animation {
-  transition: all 0.8s ease 0.2s;
-  -webkit-transition: all 0.8s ease 0.2s;
-  -moz-transition: all 0.8s ease 0.2s;
+  transition: all 0.3s ease 0.1s;
+  -webkit-transition: all 0.3s ease 0.1s;
+  -moz-transition: all 0.3s ease 0.1s;
 }
 .oc-hide {
   opacity: 0;
@@ -288,9 +288,9 @@ h5 {
   position: absolute;
   left: 0;
   top: 80px;
-  transition: all 0.8s ease 0.2s;
-  -webkit-transition: all 0.8s ease 0.2s;
-  -moz-transition: all 0.8s ease 0.2s;
+  transition: all 0.3s ease 0.1s;
+  -webkit-transition: all 0.3s ease 0.1s;
+  -moz-transition: all 0.3s ease 0.1s;
   height: 30px;
   line-height: 30px;
   height: 0;
@@ -340,9 +340,9 @@ h5 {
   height: 0;
   overflow: hidden;
   z-index: 9;
-  transition: all 0.8s ease 0.2s;
-  -webkit-transition: all 0.8s ease 0.2s;
-  -moz-transition: all 0.8s ease 0.2s;
+  transition: all 0.3s ease 0.1s;
+  -webkit-transition: all 0.3s ease 0.1s;
+  -moz-transition: all 0.3s ease 0.1s;
   background: rgba(0, 0, 0, 0.7);
   width: 100%;
 }
@@ -604,9 +604,9 @@ h5 {
   background: rgba(255, 255, 255, 0.95);
   opacity: 0;
   z-index: 10;
-  transition: all 0.8s ease 0.2s;
-  -webkit-transition: all 0.8s ease 0.2s;
-  -moz-transition: all 0.8s ease 0.2s;
+  transition: all 0.3s ease 0.1s;
+  -webkit-transition: all 0.3s ease 0.1s;
+  -moz-transition: all 0.3s ease 0.1s;
 }
 .public-index .public-content .auto-show-footer.on {
   bottom: 0;
@@ -631,9 +631,9 @@ h5 {
   width: 40px;
 }
 .public-index .reg-succ-box {
-  transition: all 0.8s ease 0.2s;
-  -webkit-transition: all 0.8s ease 0.2s;
-  -moz-transition: all 0.8s ease 0.2s;
+  transition: all 0.3s ease 0.1s;
+  -webkit-transition: all 0.3s ease 0.1s;
+  -moz-transition: all 0.3s ease 0.1s;
   width: 0;
   height: 0;
   opacity: 0;
@@ -731,9 +731,9 @@ h5 {
   height: 30px;
   line-height: 30px;
   width: 100px;
-  transition: all 0.8s ease 0.2s;
-  -webkit-transition: all 0.8s ease 0.2s;
-  -moz-transition: all 0.8s ease 0.2s;
+  transition: all 0.3s ease 0.1s;
+  -webkit-transition: all 0.3s ease 0.1s;
+  -moz-transition: all 0.3s ease 0.1s;
 }
 .banner .slider-text.add-active {
   opacity: 1;
@@ -867,18 +867,19 @@ h5 {
 .user-content .user-content-nav .user-name .menu {
   background: #666;
   position: absolute;
-  transition: all 0.8s ease 0.2s;
-  -webkit-transition: all 0.8s ease 0.2s;
-  -moz-transition: all 0.8s ease 0.2s;
+  transition: all 0.3s ease 0.1s;
+  -webkit-transition: all 0.3s ease 0.1s;
+  -moz-transition: all 0.3s ease 0.1s;
   opacity: 0;
   top: -30px;
   left: 0;
   width: 100%;
   z-index: -10;
 }
-.user-content .user-content-nav .user-name .menu a {
+.user-content .user-content-nav .user-name .menu span {
   color: #fff;
   display: block;
+  cursor: pointer;
 }
 .user-content .user-content-nav .user-name .menu .iconfont {
   margin-left: 10px;
@@ -953,9 +954,9 @@ h5 {
   position: fixed;
   width: 100%;
   height: 100%;
-  transition: all 0.8s ease 0.2s;
-  -webkit-transition: all 0.8s ease 0.2s;
-  -moz-transition: all 0.8s ease 0.2s;
+  transition: all 0.3s ease 0.1s;
+  -webkit-transition: all 0.3s ease 0.1s;
+  -moz-transition: all 0.3s ease 0.1s;
   left: 0;
   top: -200%;
   background: rgba(0, 0, 0, 0.7);
@@ -1002,12 +1003,16 @@ h5 {
   color: #fff;
   float: right;
   display: block;
+  position: relative;
   background: #faa732;
   cursor: pointer;
 }
 .categoryBox > div > div.sure-add-category > span:first-child {
   background: #04c;
   float: left;
+}
+.categoryBox > div > div.sure-add-category > span > span {
+  left: 15px;
 }
 .add-content {
   width: 800px;
@@ -1061,9 +1066,9 @@ h5 {
   height: 0px;
   overflow-y: scroll;
   border: 1px solid #bbb;
-  transition: all 0.8s ease 0.2s;
-  -webkit-transition: all 0.8s ease 0.2s;
-  -moz-transition: all 0.8s ease 0.2s;
+  transition: all 0.3s ease 0.1s;
+  -webkit-transition: all 0.3s ease 0.1s;
+  -moz-transition: all 0.3s ease 0.1s;
   left: 70px;
   top: 31px;
   opacity: 0;
@@ -1139,9 +1144,9 @@ h5 {
   z-index: 30;
   background: rgba(0, 0, 0, 0.7);
   overflow: hidden;
-  transition: all 0.8s ease 0.2s;
-  -webkit-transition: all 0.8s ease 0.2s;
-  -moz-transition: all 0.8s ease 0.2s;
+  transition: all 0.3s ease 0.1s;
+  -webkit-transition: all 0.3s ease 0.1s;
+  -moz-transition: all 0.3s ease 0.1s;
 }
 .confirm-box.box-show {
   width: 100%;

@@ -13,11 +13,11 @@ FakeStorage.prototype.set = function(){
 }
 
 FakeStorage.prototype.delete = function(){
-	
+
 }
 
 SessionStorageFun.prototype.get = function(name){
-	if(!sessionStorage.getItem(name)){
+	if(!sessionStorage && !sessionStorage.getItem(name)){
 		return null;
 	}
 	var wapSession = JSON.parse(sessionStorage.getItem(name));

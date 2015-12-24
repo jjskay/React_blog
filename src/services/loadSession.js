@@ -45,7 +45,8 @@ var LoadSession = {
                           title: body.obj.title,
                           content: body.obj.content,
                         }
-           collection.updateOne({categoryId:query.categoryId},
+            var oldCreateTime = body.obj.oldCreateTime;
+           collection.updateOne({createTime:oldCreateTime},
             {$set:query},
             function(err, res){
                if(err){

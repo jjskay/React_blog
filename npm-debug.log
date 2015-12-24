@@ -1,6 +1,6 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'D:\\nodejs\\node.exe',
-1 verbose cli   'D:\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'start' ]
 2 info using npm@2.14.7
 3 info using node@v4.2.2
@@ -11,18 +11,18 @@
 8 info app3-0909@0.0.1 Failed to exec start script
 9 verbose stack Error: app3-0909@0.0.1 start: `node ./src/bin/www`
 9 verbose stack Exit status 1
-9 verbose stack     at EventEmitter.<anonymous> (D:\nodejs\node_modules\npm\lib\utils\lifecycle.js:214:16)
+9 verbose stack     at EventEmitter.<anonymous> (c:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:214:16)
 9 verbose stack     at emitTwo (events.js:87:13)
 9 verbose stack     at EventEmitter.emit (events.js:172:7)
-9 verbose stack     at ChildProcess.<anonymous> (D:\nodejs\node_modules\npm\lib\utils\spawn.js:24:14)
+9 verbose stack     at ChildProcess.<anonymous> (c:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:24:14)
 9 verbose stack     at emitTwo (events.js:87:13)
 9 verbose stack     at ChildProcess.emit (events.js:172:7)
 9 verbose stack     at maybeClose (internal/child_process.js:818:16)
 9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
 10 verbose pkgid app3-0909@0.0.1
-11 verbose cwd D:\Works\React_blog
-12 error Windows_NT 6.1.7601
-13 error argv "D:\\nodejs\\node.exe" "D:\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
+11 verbose cwd d:\webStorm_work\React\React_blog
+12 error Windows_NT 10.0.10586
+13 error argv "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
 14 error node v4.2.2
 15 error npm  v2.14.7
 16 error code ELIFECYCLE
