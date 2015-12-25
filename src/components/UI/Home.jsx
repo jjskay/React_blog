@@ -29,7 +29,6 @@ var Home = React.createClass({
         fetchData: function (context, params, query, done) {
             concurrent([
                 context.executeAction.bind(context, AuthActions.LoadSession, {}),
-
             ],function(){
                 concurrent([
                    context.executeAction.bind(context, ListActions.GetAtricleList , {})

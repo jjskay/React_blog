@@ -47,6 +47,7 @@ AuthActions.Login = function(context, payload, done){
        if(user.length > 0){
        	   context.dispatch('LOGIN_SUCC',{});
        	   context.dispatch('LOAD_SESSION', user[0]);
+       	   context.getRouter().transitionTo('/');
        }else{
        	   context.dispatch('LOGIN_FAIL',{});
        }
