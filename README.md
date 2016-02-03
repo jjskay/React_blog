@@ -4,8 +4,8 @@
   SH
      *git clone ...
      *npm i
-     *npm run dev
      *grunt
+     *npm run dev
 
 ```
 
